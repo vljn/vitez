@@ -9,6 +9,12 @@ module.exports = {
     extend: {
       colors: {
         background: '#caa776',
+        primary: '#301c11',
+        secondary: '#a88b70',
+      },
+      fontFamily: {
+        title: ['var(--font-glockenspiel)'],
+        main: ['var(--font-montserrat)'],
       },
     },
   },
