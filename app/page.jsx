@@ -1,5 +1,5 @@
 import Title from './ui/title';
-import Button from './button';
+import Button from './ui/button';
 
 export default function Home() {
   return (
