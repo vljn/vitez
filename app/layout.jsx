@@ -9,7 +9,9 @@ export default function RootLayout({ children }) {
   console.log(glockenspiel);
   return (
     <html lang="en">
-      <body className={`bg-background font-main ${glockenspiel.variable} ${montserrat.variable}`}>
+      <body
+        className={`bg-background font-main min-h-svh ${glockenspiel.variable} ${montserrat.variable}`}
+      >
         {children}
       </body>
     </html>
