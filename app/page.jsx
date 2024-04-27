@@ -1,5 +1,6 @@
 import Title from './ui/title';
 import Button from './ui/button';
+import Board from './ui/board';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
           <Button>Postavi kraj</Button>
         </div>
       </div>
+      <Board />
     </main>
   );
 }
