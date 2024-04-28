@@ -5,7 +5,7 @@ export default function Title() {
     <h1
       className={`text-5xl text-center text-primary py-5 md:py-0 md:text-6xl md:mb-3 xl:text-8xl font-title`}
     >
-      Knight Travails
+      Vitez
     </h1>
   );
 }

@@ -2,7 +2,7 @@ import './globals.css';
 import { glockenspiel, montserrat } from './ui/fonts/fonts';
 
 export const metadata = {
-  title: 'Knight Travails',
+  title: 'Vitez',
 };
 
 export default function RootLayout({ children }) {
