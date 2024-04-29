@@ -2,7 +2,7 @@ export default function Board() {
   function generateCell(color) {
     return (
       <div
-        className={`square ${color} w-10 h-10 md:w-14 md:h-14 lg:w-[4.5rem] lg:h-[4.5rem] xl:w-20 xl:h-20`}
+        className={`square ${color} w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20`}
       ></div>
     );
   }
@@ -23,5 +23,5 @@ export default function Board() {
     color = color === 'bg-primary' ? 'bg-secondary' : 'bg-primary';
   }
 
-  return <div className="border-2 border-primary md:mx-0 mx-auto w-fit h-fit">{rows}</div>;
+  return <div className="border-2 border-primary w-fit h-fit">{rows}</div>;
 }
