@@ -1,16 +1,10 @@
-export default function Board() {
-  function generateCell(color) {
-    return (
-      <div
-        className={`square ${color} w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20`}
-      ></div>
-    );
-  }
+import Square from './square';
 
+export default function Board() {
   function generateRow(color) {
     const cells = [];
     for (let i = 0; i < 8; i++) {
-      cells.push(generateCell(color));
+      cells.push(<Square color={color} />);
       color = color === 'bg-primary' ? 'bg-secondary' : 'bg-primary';
     }
     return <div className="flex">{cells}</div>;
