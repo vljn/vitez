@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Board from './board';
-import Knight from './Knight';
+import Knight from './knight';
 import Button from './button';
 import { moveAcrossAll } from '../lib/board';
 
