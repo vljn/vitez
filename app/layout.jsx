@@ -2,7 +2,7 @@ import './globals.css';
 import { glockenspiel, montserrat } from './ui/fonts/fonts';
 
 export const metadata = {
-  title: 'Vitez',
+  title: 'Витез',
 };
 
 export default function RootLayout({ children }) {
