@@ -1,12 +1,17 @@
 import React from 'react';
-import Square from './Square';
+import Square from './square';
 
-export default function Board() {
+export default function Board({ visitedSquares }) {
   const renderRow = (rowIndex) => {
     const cells = [];
     for (let i = 0; i < 8; i++) {
+      const isVisited = visitedSquares.some((square) => square.x === i && square.y === rowIndex);
       cells.push(
-        <Square key={i} color={(rowIndex + i) % 2 === 0 ? 'bg-primary' : 'bg-secondary'} />
+        <Square
+          key={i}
+          color={(rowIndex + i) % 2 === 0 ? 'bg-primary' : 'bg-secondary'}
+          visited={isVisited}
+        />
       );
     }
     return cells;

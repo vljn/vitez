@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import KnightImage from '../../public/knight-board.svg';
 import Image from 'next/image';
 
-export default function Knight({ position, moving }) {
+export default function Knight({ position }) {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Knight({ position, moving }) {
       alt="Knight"
       style={{
         ...style,
-        transition: 'transform 0.5s ease-in-out',
+        transition: 'transform 0.25s',
         position: 'absolute',
       }}
     />
