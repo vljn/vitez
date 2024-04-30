@@ -87,16 +87,18 @@ export default function AllSquares() {
           value={inputSpeed}
           id="brzina"
           disabled={isRunning}
-          className="flex-1 ml-4 h-2 bg-primary appearance-none rounded
+          className="flex-1 ml-4 h-2 bg-background border-2 border-primary appearance-none rounded
           [&::-webkit-slider-thumb]:appearance-none 
-          [&::-webkit-slider-thumb]:!bg-primary
+          [&::-webkit-slider-thumb]:!bg-secondary
           [&::-webkit-slider-thumb]:w-4
           [&::-webkit-slider-thumb]:h-4
           [&::-webkit-slider-thumb]:rounded-2xl
           [&::-webkit-slider-thumb]:border-4
           [&::-webkit-slider-thumb]:border-solid
-          [&::-webkit-slider-thumb]:border-secondary
+          [&::-webkit-slider-thumb]:border-primary
           [&::-webkit-slider-thumb]:disabled:!bg-gray-500
+          [&::-webkit-slider-thumb]:hover:scale-125
+          [&::-webkit-slider-thumb]:transition-transform
           disabled:bg-gray-500
           cursor-pointer"
         />
