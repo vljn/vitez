@@ -41,7 +41,11 @@ export default function AllSquares() {
       const timerId = setTimeout(() => {
         setKnightPosition({ x: move.x, y: move.y });
         if (index > 0) {
-          newVisitedSquares.push({ x: moves[index - 1].x, y: moves[index - 1].y });
+          newVisitedSquares.push({
+            x: moves[index - 1].x,
+            y: moves[index - 1].y,
+            index: index,
+          });
           setVisitedSquares([...newVisitedSquares]);
         }
       }, delay);
