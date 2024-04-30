@@ -9,7 +9,7 @@ export default function Board({ visitedSquares }) {
       cells.push(
         <Square
           key={i}
-          color={(rowIndex + i) % 2 === 0 ? 'primary' : 'secondary'}
+          background={(rowIndex + i) % 2 === 0 ? 'bg-primary' : 'bg-secondary'}
           visited={visited}
         />
       );
