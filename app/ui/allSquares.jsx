@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Board from './board';
-import Knight from './Knight';
+import Knight from './knight';
 import Button from './button';
 import { moveAcrossAll } from '../lib/board';
 
@@ -11,6 +11,7 @@ export default function AllSquares() {
   const [visitedSquares, setVisitedSquares] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
   const [inputSpeed, setInputSpeed] = useState(500);
+  const [isFinished, setIsFinished] = useState(false);
   const timerIdsRef = useRef([]);
   const minSpeed = 100;
   const maxSpeed = 1000;
@@ -25,7 +26,14 @@ export default function AllSquares() {
       setVisitedSquares([]);
       return;
     }
+    if (isFinished) {
+      setKnightPosition({ x: 0, y: 0 });
+      setVisitedSquares([]);
+      setIsFinished(false);
+      return;
+    }
     setIsRunning(true);
+    setIsFinished(false);
     const moves = moveAcrossAll(knightPosition.x, knightPosition.y);
     const newVisitedSquares = [];
     let delay = 0;
@@ -42,19 +50,28 @@ export default function AllSquares() {
     });
     const endingId = setTimeout(() => {
       setIsRunning(false);
+      setIsFinished(true);
       timerIdsRef.current = [];
     }, moves.length * animationSpeed);
     timerIdsRef.current.push(endingId);
   };
+
+  function buttonText() {
+    if (isRunning) {
+      return 'Креће се... (Стисни да зауставиш)';
+    }
+    if (isFinished) {
+      return 'Врати на почетак';
+    }
+    return 'Почни';
+  }
 
   return (
     <div>
       <div className="flex flex-col gap-4">
         <Board visitedSquares={visitedSquares} />
         <Knight position={knightPosition} />
-        <Button onClick={handleButtonClick}>
-          {isRunning ? 'Креће се... (Стисни да зауставиш)' : 'Почни'}
-        </Button>
+        <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
       <div className="flex items-center mt-2">
         <label htmlFor="brzina" className="text-sm lg:text-base">
