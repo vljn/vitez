@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`bg-background font-main min-h-svh ${glockenspiel.variable} ${montserrat.variable}`}
+        className={`bg-background font-main ${glockenspiel.variable} ${montserrat.variable} text-primary`}
       >
         {children}
       </body>
