@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        glavna: 'url("../public/background.png")',
+      },
       colors: {
         background: '#caa776',
         primary: '#301c11',

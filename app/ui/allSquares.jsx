@@ -91,7 +91,7 @@ export default function AllSquares() {
           value={inputSpeed}
           id="brzina"
           disabled={isRunning}
-          className="flex-1 ml-4 h-2 bg-background border-2 border-primary appearance-none rounded
+          className="flex-1 ml-4 h-2 bg-secondary border-2 border-primary appearance-none rounded
           [&::-webkit-slider-thumb]:appearance-none 
           [&::-webkit-slider-thumb]:!bg-secondary
           [&::-webkit-slider-thumb]:w-4
