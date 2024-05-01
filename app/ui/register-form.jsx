@@ -13,7 +13,7 @@ export default function RegisterForm() {
     <div className="w-full max-w-lg mx-4">
       <form
         action={action}
-        className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl bg-secondary"
+        className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl mx-4 bg-secondary"
       >
         <div className="mb-3">
           <label htmlFor="email" className="block font-bold text-sm mb-2 lg:text-lg">
@@ -25,12 +25,9 @@ export default function RegisterForm() {
             name="email"
             className="appearance-none rounded bg-primary text-knight-white px-3 py-2 w-full leading-tight focus:ring-2 focus:ring-knight-white focus:invalid:ring-red-600 border-none"
           />
-          {state?.errors?.email &&
-            state.errors.email.map((error) => (
-              <p className="mt-1 text-base text-red-800" key={error}>
-                {error}
-              </p>
-            ))}
+          {state?.errors?.email && (
+            <p className="mt-1 text-base text-red-800">{state.errors.email[0]}</p>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="username" className="block font-bold text-sm mb-2 lg:text-lg">
@@ -42,12 +39,9 @@ export default function RegisterForm() {
             name="username"
             className="appearance-none rounded bg-primary text-knight-white px-3 py-2 w-full leading-tight focus:ring-2 focus:ring-knight-white focus:invalid:ring-red-600 border-none"
           />
-          {state?.errors?.username &&
-            state.errors.username.map((error) => (
-              <p className="mt-1 text-base text-red-800" key={error}>
-                {error}
-              </p>
-            ))}
+          {state?.errors?.username && (
+            <p className="mt-1 text-base text-red-800">{state.errors.username[0]}</p>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block font-bold text-sm mb-2 lg:text-lg">
@@ -59,12 +53,9 @@ export default function RegisterForm() {
             name="password"
             className="appearance-none rounded bg-primary text-knight-white px-3 py-2 w-full leading-tight focus:ring-2 focus:ring-knight-white focus:invalid:ring-red-600 border-none"
           />
-          {state?.errors?.password &&
-            state.errors.password.map((error) => (
-              <p className="mt-1 text-base text-red-800" key={error}>
-                {error}
-              </p>
-            ))}
+          {state?.errors?.password && (
+            <p className="mt-1 text-base text-red-800">{state.errors.password[0]}</p>
+          )}
         </div>
         <div className="mb-8">
           <label htmlFor="confirmPassword" className="block font-bold text-sm mb-2 lg:text-lg">
@@ -76,12 +67,9 @@ export default function RegisterForm() {
             name="confirmPassword"
             className="appearance-none rounded bg-primary text-knight-white px-3 py-2 w-full leading-tight focus:ring-2 focus:ring-knight-white focus:invalid:ring-red-600 border-none"
           />
-          {state?.errors?.confirmPassword &&
-            state.errors.confirmPassword.map((error) => (
-              <p className="mt-1 text-base text-red-800" key={error}>
-                {error}
-              </p>
-            ))}
+          {state?.errors?.confirmPassword && (
+            <p className="mt-1 text-base text-red-800">{state.errors.confirmPassword[0]}</p>
+          )}
         </div>
         {state?.message && <p>state.message</p>}
         <FormButton>Региструј се</FormButton>

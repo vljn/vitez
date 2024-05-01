@@ -5,8 +5,9 @@ import AllSquares from './ui/allSquares';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { auth, signOut, signIn } from '@/auth';
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-svh lg:w-full lg:px-24 lg:gap-8 text-primary xl:gap-24">
       <div className="max-lg:mb-2 sm:text-xl lg:text-base xl:text-3xl max-lg:text-center lg:flex lg:justify-center lg:items-center lg:flex-col">
