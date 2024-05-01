@@ -8,7 +8,7 @@ export default function Board({ visitedSquares }) {
       const visited = visitedSquares.find((square) => square.x === i && square.y === rowIndex);
       cells.push(
         <Square
-          key={i}
+          key={rowIndex + '' + i}
           background={(rowIndex + i) % 2 === 0 ? 'bg-primary' : 'bg-secondary'}
           visited={visited}
         />
