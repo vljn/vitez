@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function LoginForm() {
   return (
     <div className="w-full max-w-lg mx-4">
-      <form className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl mx-4">
+      <form className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl mx-4 bg-secondary">
         <div className="mb-4">
           <label htmlFor="username" className="block font-bold text-sm mb-2 lg:text-lg">
             Корисничко име

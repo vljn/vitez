@@ -11,7 +11,10 @@ export default function RegisterForm() {
 
   return (
     <div className="w-full max-w-lg mx-4">
-      <form className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl" action={action}>
+      <form
+        action={action}
+        className="rounded border-2 border-primary px-6 pt-4 pb-6 shadow-xl bg-secondary"
+      >
         <div className="mb-3">
           <label htmlFor="email" className="block font-bold text-sm mb-2 lg:text-lg">
             Мејл
