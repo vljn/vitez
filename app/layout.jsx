@@ -6,7 +6,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  console.log(glockenspiel);
   return (
     <html lang="en">
       <body
