@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        glavna: 'url("../public/background.png")',
+        backgroundImage: 'url("../public/background.png")',
       },
       colors: {
         background: '#caa776',
