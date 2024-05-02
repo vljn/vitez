@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { sql } from '@vercel/postgres';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';

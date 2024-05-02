@@ -1,5 +1,5 @@
 const { db } = require('@vercel/postgres');
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcryptjs';
 
 users = [
   {
