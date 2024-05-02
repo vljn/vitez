@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react';
 export default function Sidenav({ show, session }) {
   return (
     <nav
-      className={`h-svh w-svw text-knight-white py-10 px-8 bg-primary absolute z-10`}
+      className={`h-svh w-svw text-knight-white py-10 px-8 bg-primary absolute z-20`}
       style={{
         transform: show ? 'translateX(0)' : 'translateX(-100svw)',
         transitionDuration: '300ms',

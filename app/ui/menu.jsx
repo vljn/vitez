@@ -10,7 +10,7 @@ export default function Menu({ session }) {
     <>
       <button
         onClick={() => setIsShowing(!isShowing)}
-        className={`transition-colors box-border absolute top-7 right-8 z-20 border-2 rounded ${
+        className={`transition-colors box-border absolute top-7 right-8 z-30 border-2 rounded ${
           isShowing ? 'bg-none text-knight-white border-transparent' : 'bg-secondary border-primary'
         }`}
       >

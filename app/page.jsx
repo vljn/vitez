@@ -17,7 +17,7 @@ export default async function Home() {
       <main className="flex flex-col lg:flex-row items-center lg:justify-between lg:h-svh lg:w-full lg:px-24 lg:gap-8 text-primary xl:gap-24">
         <Link
           href="/login"
-          className="lg:hidden absolute top-7 left-8 rounded border-2 border-primary bg-secondary"
+          className="lg:hidden absolute z-10 top-7 left-8 rounded border-2 border-primary bg-secondary"
         >
           <UserCircleIcon className="w-8" />
         </Link>
