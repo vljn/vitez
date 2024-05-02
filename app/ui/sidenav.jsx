@@ -2,37 +2,49 @@ import Link from 'next/link';
 import BackgroundSwitcher from './backgroundSwitcher';
 import { signOut } from 'next-auth/react';
 
-export default function Sidenav({ show, session }) {
+export default function Sidenav({ show, session, showCallback }) {
   return (
-    <nav
-      className={`h-svh w-svw lg:w-96 text-knight-white py-10 px-8 bg-primary absolute z-30`}
-      style={{
-        transform: show ? 'translateX(0)' : 'translateX(-100svw)',
-        transition: 'transform 300ms ease-in-out',
-      }}
-    >
-      <div className="flex flex-col justify-between h-full">
-        <div>
-          {session?.user ? (
-            <h1 className="text-lg">
-              Здраво, <span>{session.user.name}</span>
-            </h1>
-          ) : (
-            <Link href="/login">
-              <h1>Улогуј се</h1>
-            </Link>
-          )}
-          <hr />
-        </div>
-        <div>
-          {session?.user && <button onClick={() => signOut()}>Излогуј се</button>}
-          <hr className="my-3" />
-          <div className="flex justify-between">
-            <BackgroundSwitcher />
-            <h2>вљн :)</h2>
+    <>
+      {show ? (
+        <div
+          onClick={() => showCallback(false)}
+          className="w-svw h-svh absolute z-30 bg-black opacity-50 animate-fadeHalf"
+        ></div>
+      ) : null}
+      <nav
+        className={`h-svh w-svw lg:w-96 text-knight-white py-10 px-8 bg-primary absolute z-40`}
+        style={{
+          transform: show ? 'translateX(0)' : 'translateX(-100svw)',
+          transition: 'transform 300ms ease-in-out',
+        }}
+      >
+        <div className="flex flex-col justify-between h-full">
+          <div>
+            {session?.user ? (
+              <h1 className="text-lg">
+                Здраво, <span>{session.user.name}</span>
+              </h1>
+            ) : (
+              <Link href="/login">
+                <h1 className="hover:underline">Улогуј се</h1>
+              </Link>
+            )}
+            <hr />
+          </div>
+          <div>
+            {session?.user && (
+              <button className="hover:underline" onClick={() => signOut()}>
+                Излогуј се
+              </button>
+            )}
+            <hr className="my-3" />
+            <div className="flex justify-between">
+              <BackgroundSwitcher />
+              <h2>вљн :)</h2>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
