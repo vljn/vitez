@@ -22,7 +22,16 @@ module.exports = {
         title: ['var(--font-glockenspiel)'],
         main: ['var(--font-montserrat)'],
       },
+      animation: {
+        fadeHalf: 'fade50 300ms both',
+      },
+      keyframes: {
+        fade50: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '0.5' },
+        },
+      },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-animated')],
 };

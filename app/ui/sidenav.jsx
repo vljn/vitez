@@ -5,10 +5,10 @@ import { signOut } from 'next-auth/react';
 export default function Sidenav({ show, session }) {
   return (
     <nav
-      className={`h-svh w-svw text-knight-white py-10 px-8 bg-primary absolute z-20`}
+      className={`h-svh w-svw lg:w-96 text-knight-white py-10 px-8 bg-primary absolute z-30`}
       style={{
         transform: show ? 'translateX(0)' : 'translateX(-100svw)',
-        transitionDuration: '300ms',
+        transition: 'transform 300ms ease-in-out',
       }}
     >
       <div className="flex flex-col justify-between h-full">
