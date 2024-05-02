@@ -23,11 +23,17 @@ export default async function Home() {
         </Link>
         <div className="max-lg:mb-2 sm:text-xl lg:text-base xl:text-3xl max-lg:text-center lg:flex lg:justify-center lg:items-center lg:flex-col">
           <Title>Витез</Title>
-          <p className="px-6 lg:px-0 text-center xl:mt-6">
-            Опште је познато да је коњ фигура која може доћи до било ког поља на табли, независно од
-            поља са ког креће, као и да може посетити свако поље на табли, а да не посети исто поље
-            два пута
-          </p>
+          <div className="px-6 lg:px-0 text-center xl:mt-6">
+            <p>
+              Опште је познато да је коњ фигура која може доћи до било ког поља на табли, независно
+              од поља са ког креће, као и да може посетити свако поље на табли, а да не посети исто
+              поље два пута
+            </p>
+            <p>
+              На овај страници приказана је симулација проблема коњичког скока (Knight&apos;s tour)
+              почевши из горњег левог угла шаховске табле
+            </p>
+          </div>
           {!session?.user && (
             <Link
               href="/login"
