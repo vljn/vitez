@@ -21,7 +21,7 @@ export default function Sidenav({ show, session, showCallback }) {
         <div className="flex flex-col justify-between h-full">
           <div>
             {session?.user ? (
-              <h1 className="text-lg">
+              <h1 className="text-lg max-lg:mr-10">
                 Здраво, <span>{session.user.name}</span>
               </h1>
             ) : (
@@ -39,8 +39,11 @@ export default function Sidenav({ show, session, showCallback }) {
             )}
             <hr className="my-3" />
             <div className="flex justify-between">
-              <BackgroundSwitcher />
-              <h2>вљн :)</h2>
+              <div>
+                <BackgroundSwitcher />
+                <i className="block text-sm">by пнт &#58;&#41;</i>
+              </div>
+              <h2>вљн &#58;&#41;</h2>
             </div>
           </div>
         </div>
