@@ -6,6 +6,8 @@ import { sql } from '@vercel/postgres';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { revalidatePath } from 'next/cache';
+import { auth } from '@/auth';
 
 const RegisterFormSchema = z
   .object({
@@ -122,5 +124,85 @@ export async function login(state, formData) {
       }
     }
     throw error;
+  }
+}
+
+const UpdateFormSchema = z
+  .object({
+    username: z
+      .string()
+      .min(1, { message: 'Корисничко име је обавезно' })
+      .min(6, { message: 'Корисничко име мора имати најмање шест карактера' })
+      .regex(
+        /^[a-zA-Z]+[a-zA-Z0-9_.]*$/,
+        'Корисничко име мора почети словом и сме садржати само слова, цифре, тачке и доње црте'
+      )
+      .max(20, { message: 'Корисничко име може имати максимално 20 карактера' })
+      .trim(),
+    email: z
+      .string()
+      .min(1, { message: 'Мејл адреса је обавезна' })
+      .email({ message: 'Унета мејл адреса није валидна' }),
+    id: z.string().min(1, { message: 'Освежите страницу, па покушајте поново' }),
+  })
+  .refine(
+    async (data) => {
+      const res =
+        await sql`SELECT * FROM korisnici WHERE korisnicko_ime = ${data.username} AND NOT id = ${data.id};`;
+      return res.rowCount === 0;
+    },
+    {
+      message: 'Корисник са унетим корисничким именом већ постоји',
+      path: ['username'],
+    }
+  )
+  .refine(
+    async (data) => {
+      const res =
+        await sql`SELECT * FROM korisnici WHERE mejl = ${data.email} AND NOT id = ${data.id};`;
+      return res.rowCount === 0;
+    },
+    {
+      message: 'Корисник са унетом мејл адресом већ постоји',
+      path: ['email'],
+    }
+  )
+  .refine(
+    async (data) => {
+      const session = await auth();
+      return session?.user.id === data.id;
+    },
+    {
+      message: 'Освежите страницу, па покушајте поново',
+      path: ['id'],
+    }
+  );
+
+export async function update(state, formData) {
+  const validatedFields = await UpdateFormSchema.safeParseAsync({
+    username: formData.get('username'),
+    email: formData.get('email'),
+    id: formData.get('id'),
+  });
+
+  if (!validatedFields.success) {
+    console.log(validatedFields.error.id);
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const { username, email, id } = validatedFields.data;
+
+  try {
+    await sql`UPDATE korisnici SET korisnicko_ime = ${username}, mejl = ${email} WHERE id = ${id}`;
+    revalidatePath('/profile');
+    return {
+      messageSuccess: 'Успешно ажуриран профил',
+    };
+  } catch (error) {
+    return {
+      message: 'Грешка у бази података',
+    };
   }
 }
