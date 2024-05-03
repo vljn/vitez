@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import BackgroundSwitcher from './backgroundSwitcher';
 import { signOut } from 'next-auth/react';
+import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 
 export default function Sidenav({ show, session, showCallback }) {
   return (
@@ -32,11 +33,18 @@ export default function Sidenav({ show, session, showCallback }) {
             <hr />
           </div>
           <div>
-            {session?.user && (
-              <button className="hover:underline" onClick={() => signOut()}>
-                Излогуј се
-              </button>
-            )}
+            <div className="flex justify-between items-center">
+              {session?.user && (
+                <>
+                  <button className="hover:underline" onClick={() => signOut()}>
+                    Излогуј се
+                  </button>
+                  <Link href="/profile">
+                    <Cog6ToothIcon className="w-6 hover:rotate-90 transition-transform duration-500" />
+                  </Link>
+                </>
+              )}
+            </div>
             <hr className="my-3" />
             <div className="flex justify-between">
               <div>
