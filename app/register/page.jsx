@@ -1,4 +1,4 @@
-import RegisterForm from '../ui/register-form';
+import RegisterForm from '../ui/registerForm';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import Title from '../ui/title';

@@ -1,4 +1,4 @@
-import LoginForm from '../ui/login-form';
+import LoginForm from '../ui/loginForm';
 import Title from '../ui/title';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
