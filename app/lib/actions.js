@@ -102,8 +102,6 @@ export async function login(state, formData) {
     password: formData.get('password'),
   });
 
-  console.log(validatedFields.error);
-
   if (!validatedFields.success) {
     return {
       error: 'Унети подаци нису валидни',
@@ -113,7 +111,7 @@ export async function login(state, formData) {
   const { username, password } = validatedFields.data;
 
   try {
-    const res = await signIn('credentials', { username, password });
+    await signIn('credentials', { username, password });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
