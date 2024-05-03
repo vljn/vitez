@@ -186,7 +186,6 @@ export async function update(state, formData) {
   });
 
   if (!validatedFields.success) {
-    console.log(validatedFields.error.id);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
@@ -199,6 +198,67 @@ export async function update(state, formData) {
     revalidatePath('/profile');
     return {
       messageSuccess: 'Успешно ажуриран профил',
+    };
+  } catch (error) {
+    return {
+      message: 'Грешка у бази података',
+    };
+  }
+}
+
+const UpdatePasswordSchema = z
+  .object({
+    password: z.string().min(1, { message: 'Тренутна лозинка је обавезна' }).trim(),
+    newPassword: z
+      .string()
+      .min(8, { message: 'Нова лозинка мора имати најмање осам карактера' })
+      .regex(/[a-zA-Z]/, 'Нова лозинка мора садржати барем једно слово')
+      .regex(/[0-9]/, 'Нова лозинка мора садржати барем једну цифру')
+      .trim(),
+    id: z.string().min(1, { message: 'Освежите страницу, па покушајте поново' }),
+  })
+  .refine((data) => data.password !== data.confirmPassword, {
+    message: 'Нова лозинка не сме бити као стара',
+    path: ['newPassword'],
+  })
+  .refine(
+    async (data) => {
+      const session = await auth();
+      return session?.user.id === data.id;
+    },
+    {
+      message: 'Освежите страницу, па покушајте поново',
+      path: ['id'],
+    }
+  )
+  .refine(
+    async (data) => {
+      const res = await sql`SELECT * FROM korisnici WHERE id = ${data.id}`;
+      return bcrypt.compare(data.password, res.rows[0].sifra);
+    },
+    { message: 'Унета лозинка се не подудара са тренутном', path: ['password'] }
+  );
+
+export async function updatePassword(state, formData) {
+  const validatedFields = await UpdatePasswordSchema.safeParseAsync({
+    password: formData.get('password'),
+    newPassword: formData.get('newPassword'),
+    id: formData.get('id'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const { newPassword, id } = validatedFields.data;
+  const newPasswordHashed = await bcrypt.hash(newPassword, 10);
+
+  try {
+    await sql`UPDATE korisnici SET sifra = ${newPasswordHashed} WHERE id = ${id}`;
+    return {
+      messageSuccess: 'Успешно промењена лозинка',
     };
   } catch (error) {
     return {

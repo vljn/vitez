@@ -16,7 +16,7 @@ export default function Links() {
       </ProfileLink>
       <ProfileLink href="/profile/password" active={pathName === '/profile/password'}>
         <KeyIcon className="w-6" />
-        <span>Промена шифре</span>
+        <span>Промена лозинке</span>
       </ProfileLink>
     </nav>
   );
