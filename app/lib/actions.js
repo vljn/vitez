@@ -114,7 +114,6 @@ export async function login(state, formData) {
 
   try {
     const res = await signIn('credentials', { username, password });
-    console.log(res);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
