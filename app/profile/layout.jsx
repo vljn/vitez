@@ -16,7 +16,7 @@ export default async function Layout({ children }) {
   return (
     <>
       <HeaderAndSidenav username={user?.korisnicko_ime} link={true} />
-      <div className="px-8 lg:grid lg:grid-cols-4">
+      <div className="px-8 lg:grid lg:grid-cols-4 lg:gap-14">
         <aside>
           <Links />
         </aside>
