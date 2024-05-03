@@ -1,5 +1,5 @@
 import LoginForm from '../ui/login-form';
-import TitleToHome from '../ui/titleToHome';
+import Title from '../ui/title';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-2 min-h-svh">
-        <TitleToHome />
+        <Title link={true}>Витез</Title>
         <LoginForm />
       </div>
     </>

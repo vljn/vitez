@@ -1,7 +1,7 @@
 import RegisterForm from '../ui/register-form';
-import TitleToHome from '../ui/titleToHome';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import Title from '../ui/title';
 
 export default async function Page() {
   const session = await auth();
@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-2 min-h-svh">
-        <TitleToHome />
+        <Title link={true}>Витез</Title>
         <RegisterForm />
       </div>
     </>

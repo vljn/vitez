@@ -12,9 +12,9 @@ export default async function Home() {
 
   return (
     <>
-      <HeaderAndSidenav username={user?.korisnicko_ime} />
+      <HeaderAndSidenav username={user?.korisnicko_ime} link={false} />
       <main className="flex flex-col lg:flex-row items-center lg:justify-between lg:w-full lg:px-24 lg:gap-8 text-primary xl:gap-24">
-        <div className="max-lg:mb-2 sm:text-xl lg:text-base xl:text-3xl max-lg:text-center lg:flex lg:justify-center lg:items-center lg:flex-col">
+        <div className="max-lg:mb-4 sm:text-xl lg:text-base xl:text-3xl max-lg:text-center lg:flex lg:justify-center lg:items-center lg:flex-col">
           <div className="px-6 lg:px-0 text-center xl:mt-6">
             <p>
               Опште је познато да је коњ фигура која може доћи до било ког поља на табли, независно
