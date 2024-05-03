@@ -7,9 +7,6 @@ import { redirect } from 'next/navigation';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
-  pages: {
-    signIn: '/login',
-  },
   callbacks: {
     async jwt({ user, token }) {
       if (user) {
