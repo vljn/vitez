@@ -1,13 +1,18 @@
 import AllSquares from './ui/allSquares';
 import { auth } from '@/auth';
-import Header from './ui/header';
+import HeaderAndSidenav from './ui/headerAndSidenav';
+import { getUser } from './lib/data';
 
 export default async function Home() {
   const session = await auth();
+  let user = null;
+  if (session?.user) {
+    user = await getUser(session?.user.id);
+  }
 
   return (
     <>
-      <Header session={session} />
+      <HeaderAndSidenav username={user?.korisnicko_ime} />
       <main className="flex flex-col lg:flex-row items-center lg:justify-between lg:w-full lg:px-24 lg:gap-8 text-primary xl:gap-24">
         <div className="max-lg:mb-2 sm:text-xl lg:text-base xl:text-3xl max-lg:text-center lg:flex lg:justify-center lg:items-center lg:flex-col">
           <div className="px-6 lg:px-0 text-center xl:mt-6">

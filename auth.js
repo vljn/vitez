@@ -10,6 +10,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: '/login',
   },
+  callbacks: {
+    async jwt({ user, token }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session?.user) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
   providers: [
     Credentials({
       credentials: {
@@ -29,7 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const passwordMatch = await bcrypt.compare(credentials.password, user.sifra);
         if (passwordMatch) {
-          return { name: user['korisnicko_ime'] };
+          return { id: user['id'] };
         }
         return null;
       },
