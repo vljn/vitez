@@ -9,11 +9,11 @@ export default function Sidenav({ show, session, showCallback }) {
       {show ? (
         <div
           onClick={() => showCallback(false)}
-          className="w-svw h-svh absolute z-30 bg-black opacity-50 animate-fadeHalf"
+          className="absolute top-0 h-svh w-svw z-30 bg-black opacity-50 animate-fadeHalf"
         ></div>
       ) : null}
       <nav
-        className={`h-svh w-svw lg:w-96 text-knight-white py-10 px-8 bg-primary absolute z-40`}
+        className={`absolute left-0 top-0 h-svh w-svw lg:w-96 z-40 text-knight-white py-10 px-8 bg-primary`}
         style={{
           transform: show ? 'translateX(0)' : 'translateX(-100svw)',
           transition: 'transform 300ms ease-in-out',
