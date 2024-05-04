@@ -1,23 +1,22 @@
 import Link from 'next/link';
 import BackgroundSwitcher from './backgroundSwitcher';
-import { signOut } from 'next-auth/react';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import { SignOutButton } from './signOutButton';
+import SidenavLink from './sidenavLink';
 
 const pages = [
   { id: 1, link: '/', label: 'Почетна' },
   { id: 2, link: '/problem_konjickog_skoka', label: 'Проблем коњичког скока' },
 ];
 
-const links = pages.map((page) => (
-  <div className="mt-8 text-lg" key={page.id}>
-    <Link href={page.link} className="hover:underline">
-      {page.label}
-    </Link>
-  </div>
-));
-
 export default function Sidenav({ show, showCallback, username }) {
+  const links = pages.map((page) => (
+    <div className="mt-8 text-lg" key={page.id}>
+      <SidenavLink href={page.link} showCallback={showCallback}>
+        {page.label}
+      </SidenavLink>
+    </div>
+  ));
   return (
     <>
       {show ? (
@@ -52,8 +51,11 @@ export default function Sidenav({ show, showCallback, username }) {
               {username && (
                 <>
                   <SignOutButton />
-                  <Link href="/nalog">
-                    <Cog6ToothIcon className="w-6 hover:rotate-90 transition-transform duration-500" />
+                  <Link href="/nalog" onClick={() => showCallback(false)}>
+                    <Cog6ToothIcon
+                      className="w-6 hover:rotate-90 transition-transform duration-500"
+                      onClick={() => showCallback(false)}
+                    />
                   </Link>
                 </>
               )}
