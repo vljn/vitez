@@ -6,15 +6,14 @@ import ProfileLink from './link';
 
 export default function Links() {
   const pathName = usePathname();
-  console.log(pathName);
 
   return (
     <nav>
-      <ProfileLink href="/profile" active={pathName === '/profile'}>
+      <ProfileLink href="/nalog" active={pathName === '/nalog'}>
         <UserIcon className="w-6" />
-        <span>Профил</span>
+        <span>Налог</span>
       </ProfileLink>
-      <ProfileLink href="/profile/password" active={pathName === '/profile/password'}>
+      <ProfileLink href="/nalog/lozinka" active={pathName === '/nalog/lozinka'}>
         <KeyIcon className="w-6" />
         <span>Промена лозинке</span>
       </ProfileLink>

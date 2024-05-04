@@ -1,7 +1,7 @@
 export const authConfig = {
   pages: {
     signIn: '/login',
-    newUser: '/register',
+    newUser: '/registracija',
   },
   providers: [],
 };

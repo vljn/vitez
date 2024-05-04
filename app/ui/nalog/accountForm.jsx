@@ -6,7 +6,7 @@ import { useFormState } from 'react-dom';
 import { update } from '@/app/lib/actions';
 import FormError from '../formError';
 
-export default function ProfileForm({ id, username, email }) {
+export default function AccountForm({ id, username, email }) {
   const [state, action] = useFormState(update, undefined);
 
   return (

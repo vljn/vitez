@@ -44,7 +44,7 @@ export default function Sidenav({ show, showCallback, username }) {
                   <button className="hover:underline" onClick={() => signOut()}>
                     Излогуј се
                   </button>
-                  <Link href="/profile">
+                  <Link href="/nalog">
                     <Cog6ToothIcon className="w-6 hover:rotate-90 transition-transform duration-500" />
                   </Link>
                 </>

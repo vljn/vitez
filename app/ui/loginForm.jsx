@@ -22,7 +22,7 @@ export default function LoginForm() {
         <FormButton>Улогуј се</FormButton>
         <p className="text-sm lg:text-base mt-3">
           Немаш налог? Направи налог{' '}
-          <Link href="/register" className="font-bold hover:underline">
+          <Link href="/registracija" className="font-bold hover:underline">
             овде
           </Link>
         </p>

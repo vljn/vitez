@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import ProfileForm from '../ui/profile/profileForm';
+import AccountForm from '../ui/nalog/accountForm';
 import { getUser } from '../lib/data';
 
 export default async function Page() {
@@ -14,9 +14,9 @@ export default async function Page() {
 
   return (
     <div className="p-8 bg-secondary rounded-lg shadow-xl border-primary border-2 ">
-      <h1 className="text-lg font-bold lg:text-2xl">Подаци о профилу</h1>
-      <p className="text-sm mb-4">Овде је могуће изменити податке о профилу</p>
-      <ProfileForm id={id} username={username} email={email} />
+      <h1 className="text-lg font-bold lg:text-2xl">Подаци о налогу</h1>
+      <p className="text-sm mb-4">Овде је могуће изменити податке о налогу</p>
+      <AccountForm id={id} username={username} email={email} />
     </div>
   );
 }

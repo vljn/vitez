@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import { getUser } from '../lib/data';
 import HeaderAndSidenav from '../ui/headerAndSidenav';
 import { redirect } from 'next/navigation';
-import Links from '../ui/profile/links';
+import Links from '../ui/nalog/links';
 
 export default async function Layout({ children }) {
   const session = await auth();
