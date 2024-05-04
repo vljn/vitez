@@ -10,7 +10,7 @@ export default async function Layout({ children }) {
   }
   return (
     <>
-      <HeaderAndSidenav link={true} username={user.korisnicko_ime} />
+      <HeaderAndSidenav link={true} username={user?.korisnicko_ime} />
       {children}
     </>
   );
