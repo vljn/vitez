@@ -7,10 +7,14 @@ export default async function Layout({ children }) {
   const session = await auth();
   let user = null;
   let signOut = false;
+  console.log('sesija: ', session);
   if (session?.user) {
     user = await getUser(session?.user.id);
     if (!user) {
+      console.log('ima sesiju nema ga u bazi');
+      console.log('user iz baze: ', user);
       signOut = true;
+      console.log('signOut: ', signOut);
     }
   }
 
