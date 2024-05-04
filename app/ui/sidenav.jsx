@@ -31,6 +31,11 @@ export default function Sidenav({ show, showCallback, username }) {
               </Link>
             )}
             <hr />
+            <div className="mt-8 text-lg">
+              <Link href="/" className="hover:underline">
+                Почетна
+              </Link>
+            </div>
           </div>
           <div>
             <div className="flex justify-between items-center">
