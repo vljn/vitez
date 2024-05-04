@@ -7,7 +7,11 @@ export default async function Layout({ children }) {
   let user = null;
   if (session?.user) {
     user = await getUser(session?.user.id);
+    console.log('sesija: ', session);
+    console.log('sesija korisnik: ', session?.user);
+    console.log('getUser: ', user);
   }
+
   return (
     <>
       <HeaderAndSidenav link={true} username={user?.korisnicko_ime} />
