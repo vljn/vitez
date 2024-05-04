@@ -3,6 +3,19 @@ import BackgroundSwitcher from './backgroundSwitcher';
 import { signOut } from 'next-auth/react';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 
+const pages = [
+  { id: 1, link: '/', label: 'Почетна' },
+  { id: 2, link: '/problem_konjickog_skoka', label: 'Проблем коњичког скока' },
+];
+
+const links = pages.map((page) => (
+  <div className="mt-8 text-lg" key={page.id}>
+    <Link href={page.link} className="hover:underline">
+      {page.label}
+    </Link>
+  </div>
+));
+
 export default function Sidenav({ show, showCallback, username }) {
   return (
     <>
@@ -31,11 +44,7 @@ export default function Sidenav({ show, showCallback, username }) {
               </Link>
             )}
             <hr />
-            <div className="mt-8 text-lg">
-              <Link href="/" className="hover:underline">
-                Почетна
-              </Link>
-            </div>
+            {links}
           </div>
           <div>
             <div className="flex justify-between items-center">
