@@ -15,7 +15,7 @@ export default function HeaderAndSidenav({ username, link }) {
       <header className="flex justify-between items-center px-8 py-4 lg:mb-10">
         <Title link={link}>Витез</Title>
         <div className="flex items-center gap-6 sm:gap-10">
-          {!username && <LoginButton />}
+          {username ? null : <LoginButton />}
           <MenuButton isShowing={isShowing} setIsShowing={setIsShowing} />
         </div>
       </header>
