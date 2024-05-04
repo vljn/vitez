@@ -1,14 +1,17 @@
-import { signOut } from '../../auth.ts';
+'use client';
+
+import { useState } from 'react';
+import SignOutClient from './signOutClient.jsx';
 
 export function SignOutButton() {
+  const [clicked, setClicked] = useState(false);
+
   return (
-    <form
-      action={async () => {
-        'use server';
-        await signOut();
-      }}
-    >
-      <button type="submit">Излогуј се</button>
-    </form>
+    <>
+      {clicked && <SignOutClient />}
+      <button onClick={() => setClicked(true)} className="hover:underline">
+        Излогуј се
+      </button>
+    </>
   );
 }

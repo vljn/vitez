@@ -2,6 +2,7 @@ import Link from 'next/link';
 import BackgroundSwitcher from './backgroundSwitcher';
 import { signOut } from 'next-auth/react';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import { SignOutButton } from './signOutButton';
 
 const pages = [
   { id: 1, link: '/', label: 'Почетна' },
@@ -50,9 +51,7 @@ export default function Sidenav({ show, showCallback, username }) {
             <div className="flex justify-between items-center">
               {username && (
                 <>
-                  <button className="hover:underline" onClick={() => signOut()}>
-                    Излогуј се
-                  </button>
+                  <SignOutButton />
                   <Link href="/nalog">
                     <Cog6ToothIcon className="w-6 hover:rotate-90 transition-transform duration-500" />
                   </Link>
