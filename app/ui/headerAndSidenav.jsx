@@ -8,6 +8,7 @@ import Sidenav from './sidenav';
 
 export default function HeaderAndSidenav({ username, link }) {
   const [isShowing, setIsShowing] = useState(false);
+  console.log(username);
 
   return (
     <>
