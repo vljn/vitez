@@ -8,8 +8,6 @@ import FormError from '../formError';
 
 export default function PasswordForm({ id }) {
   const [state, action] = useFormState(updatePassword, undefined);
-  console.log(state?.errors);
-  console.log(id);
   return (
     <form action={action}>
       <input type="hidden" name="id" value={id} />

@@ -1,12 +1,16 @@
 import { auth } from '@/auth';
 import AccountForm from '../../ui/nalog/accountForm';
 import { getUser } from '../../lib/data';
+import SignOutClient from '@/app/ui/signOutClient';
 
 export default async function Page() {
   const session = await auth();
   let id, username, email;
   if (session?.user) {
     const user = await getUser(session.user?.id);
+    if (!user) {
+      return <SignOutClient />;
+    }
     id = user?.id;
     username = user?.korisnicko_ime;
     email = user?.mejl;
