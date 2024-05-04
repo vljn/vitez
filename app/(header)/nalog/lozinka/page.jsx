@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
-import PasswordForm from '../../ui/nalog/passwordForm';
-import { getUser } from '../../lib/data';
+import PasswordForm from '../../../ui/nalog/passwordForm';
+import { getUser } from '../../../lib/data';
 
 export default async function Page() {
   const session = await auth();
