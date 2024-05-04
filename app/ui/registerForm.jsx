@@ -4,6 +4,7 @@ import FormButton from './formButton';
 import { register } from '../lib/actions';
 import { useFormState } from 'react-dom';
 import FormField from './formField';
+import Link from 'next/link';
 
 export default function RegisterForm() {
   const [state, action] = useFormState(register, undefined);
@@ -45,6 +46,12 @@ export default function RegisterForm() {
         />
         {state?.message && <p>state.message</p>}
         <FormButton>Региструј се</FormButton>
+        <p className="text-sm lg:text-base mt-3">
+          Ипак имаш налог? Улогуј се{' '}
+          <Link href="/login" className="font-bold hover:underline">
+            овде
+          </Link>
+        </p>
       </form>
     </div>
   );
