@@ -6,10 +6,10 @@ export default async function Page() {
   const session = await auth();
   let id, username, email;
   if (session?.user) {
-    const user = await getUser(session.user.id);
-    id = user.id;
-    username = user.korisnicko_ime;
-    email = user.mejl;
+    const user = await getUser(session.user?.id);
+    id = user?.id;
+    username = user?.korisnicko_ime;
+    email = user?.mejl;
   }
 
   return (

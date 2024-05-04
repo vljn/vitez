@@ -8,7 +8,7 @@ export default async function Layout({ children }) {
   const session = await auth();
   let user = null;
   if (session?.user) {
-    user = await getUser(session?.user.id);
+    user = await getUser(session?.user?.id);
   } else {
     redirect('/login');
   }
