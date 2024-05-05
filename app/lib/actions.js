@@ -218,7 +218,7 @@ const UpdatePasswordSchema = z
       .trim(),
     id: z.string().min(1, { message: 'Освежите страницу, па покушајте поново' }),
   })
-  .refine((data) => data.password !== data.confirmPassword, {
+  .refine((data) => data.password !== data.newPassword, {
     message: 'Нова лозинка не сме бити као стара',
     path: ['newPassword'],
   })
