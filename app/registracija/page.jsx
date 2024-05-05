@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-2 min-h-svh">
-        <Title link={true}>Витез</Title>
+        <Title>Витез</Title>
         <RegisterForm />
       </div>
     </>
