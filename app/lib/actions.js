@@ -114,6 +114,7 @@ export async function login(state, formData) {
 
   try {
     await signIn('credentials', { username, password });
+    console.log(a);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
