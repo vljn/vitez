@@ -71,7 +71,7 @@ export default function AllSquares() {
   }
 
   return (
-    <div>
+    <div className="max-lg:mb-6">
       <div className="flex flex-col gap-4">
         <Board visitedSquares={visitedSquares} />
         <Knight position={knightPosition} />
