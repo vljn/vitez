@@ -22,7 +22,7 @@ export default function FormField({ label, type, name, id, error, last }) {
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-2 bottom-2 text-knight-white w-5"
+          className="absolute right-2 top-11 text-knight-white w-5"
         >
           {showPassword ? <EyeSlashIcon /> : <EyeIcon className="" />}
         </button>
