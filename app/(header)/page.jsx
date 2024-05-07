@@ -1,6 +1,6 @@
-import AllSquares from '../ui/allSquares';
 import Link from 'next/link';
 import { auth } from '@/auth';
+import KnightsTour from '../ui/knightsTour';
 
 export default async function Home() {
   const session = await auth();
@@ -27,7 +27,7 @@ export default async function Home() {
             </p>
           )}
         </div>
-        <AllSquares />
+        <KnightsTour coordinates={false} />
       </main>
     </>
   );

@@ -1,13 +1,14 @@
 import React from 'react';
 import Square from './square';
 
-export default function Board({ visitedSquares }) {
+export default function Board({ visitedSquares, onClick }) {
   const renderRow = (rowIndex) => {
     const cells = [];
     for (let i = 0; i < 8; i++) {
       const visited = visitedSquares.find((square) => square.x === i && square.y === rowIndex);
       cells.push(
         <Square
+          onClick={() => onClick(i, rowIndex)}
           key={rowIndex + '' + i}
           background={(rowIndex + i) % 2 === 0 ? 'bg-primary' : 'bg-secondary'}
           visited={visited}

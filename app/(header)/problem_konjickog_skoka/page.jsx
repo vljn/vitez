@@ -1,10 +1,13 @@
+import Image from 'next/image';
+import KnightsTour from '@/app/ui/knightsTour';
+
 export default function Page() {
   return (
     <main>
       <h1 className="text-center text-xl font-bold sm:text-2xl lg:text-4xl xl:text-5xl my-4 xl:mt-0 xl:mb-8 lg:mt-0">
         Проблем коњичког скока
       </h1>
-      <article className="text-justify px-4 lg:px-16 xl:px-32 text-lg">
+      <article className="text-justify px-4 md:px-16 xl:px-32 text-base">
         <p className="first-letter:float-start first-letter:text-5xl xl:first-letter:text-7xl first-letter:me-3 first-letter:font-bold text-lg md:text-xl lg:text-xl xl:text-3xl mb-5">
           Да ли је могуће коњем обићи свако поље шаховске табле тако да се свако поље обиђе тачно
           једанпут? Ово је питање које лежи у основи проблема коњичког скока (Knight&apos;s tour
@@ -15,7 +18,11 @@ export default function Page() {
           пољу са ког се коњ може поново вратити на почетно поље. Овакав пут, назива се затвореним,
           у супротном пут је отворен.
         </p>
-        <p className="mb-6">
+        <figure className="hidden sm:float-left sm:me-10 sm:mb-0 sm:flex sm:flex-col sm:items-center sm:gap-2">
+          <Image src="/ojler.jpg" alt="Леонард Ојлер" width={180} height={233} />
+          <figcaption className="text-center text-sm italic">Леонард Ојлер</figcaption>
+        </figure>
+        <p className="mb-2">
           Проблем датира још од деветог века, када су га изучавали источњачки мислиоци, али је прву
           формалну анализу овог проблема дао{' '}
           <a
@@ -27,7 +34,17 @@ export default function Page() {
           &nbsp;1759. (&#8222;Решење радозналог питања које изгледа не подлеже никаквој
           анализи&#8221;).
         </p>
-        <p>
+        <figure className="sm:hidden mx-auto mb-2 flex items-center flex-col gap-2">
+          <Image src="/ojler.jpg" alt="Леонард Ојлер" width={180} height={233} />
+          <figcaption className="text-center text-sm italic">Леонард Ојлер</figcaption>
+        </figure>
+        <figure className="hidden sm:float-right sm:ms-10 sm:mb-0 sm:flex sm:flex-col sm:items-center sm:gap-2">
+          <Image src="/warnsdorff.png" width={240} height={240} alt="Ворнсдорфово правило" />
+          <figcaption className="text-center text-sm italic w-60">
+            Бројеви на пољима представљају број могућих потеза са тих поља
+          </figcaption>
+        </figure>
+        <p className="mb-2">
           Након Ојлера, разни математичари бавили су се овим проблемом. Значајно је напоменути
           Ворнсдорфово правило, први пут описано 1823. године у&nbsp;
           <i>Des Rösselsprunges einfachste und allgemeinste Lösung</i> (
@@ -41,7 +58,22 @@ export default function Page() {
           различите могућности и вратити се назад ако дође до неуспеха, што се у програмирању назива
           бектрекинг.
         </p>
+        <figure className="sm:hidden mx-auto mb-2 flex items-center flex-col gap-2">
+          <Image src="/warnsdorff.png" width={240} height={240} alt="Ворнсдорфово правило" />
+          <figcaption className="text-center text-sm italic">
+            Бројеви на пољима представљају број могућих потеза са тих поља
+          </figcaption>
+        </figure>
+        <p className="mb-2">
+          Уколико шаховску таблу посматрамо као граф, онда се овај проблем може посматрати као
+          проблем проналаска Хамилтоновог пута, односно циклуса. Хамилтонов пут (циклус) је пут
+          (циклус) у графу који сваки чвор посећује тачно једном.
+        </p>
+        <p>Доступна је и анимација проблема:</p>
       </article>
+      <div className="flex justify-center my-10">
+        <KnightsTour coordinates={true} />
+      </div>
     </main>
   );
 }

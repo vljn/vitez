@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Board from './board';
 import Knight from './knight';
 import Button from './button';
 import { moveAcrossAll } from '../lib/board';
 
-export default function AllSquares() {
+export default function KnightsTour({ coordinates }) {
   const [knightPosition, setKnightPosition] = useState({ x: 0, y: 0 });
   const [visitedSquares, setVisitedSquares] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -17,19 +17,22 @@ export default function AllSquares() {
   const maxSpeed = 1000;
   const animationSpeed = maxSpeed + minSpeed - inputSpeed;
 
+  const reset = (x, y) => {
+    setKnightPosition({ x, y });
+    setVisitedSquares([]);
+    setIsFinished(false);
+    setIsRunning(false);
+  };
+
   const handleButtonClick = () => {
     if (isRunning) {
       timerIdsRef.current.forEach((timerId) => clearTimeout(timerId));
       timerIdsRef.current = [];
-      setIsRunning(false);
-      setKnightPosition({ x: 0, y: 0 });
-      setVisitedSquares([]);
+      reset(0, 0);
       return;
     }
     if (isFinished) {
-      setKnightPosition({ x: 0, y: 0 });
-      setVisitedSquares([]);
-      setIsFinished(false);
+      reset(0, 0);
       return;
     }
     setIsRunning(true);
@@ -70,10 +73,21 @@ export default function AllSquares() {
     return 'Почни';
   }
 
+  function handleBoardClick(x, y) {
+    if (isRunning) {
+      return;
+    }
+    if (isFinished) {
+      reset(x, y);
+    }
+    setKnightPosition({ x, y });
+  }
+
   return (
-    <div className="max-lg:mb-6">
-      <div className="flex flex-col gap-4">
-        <Board visitedSquares={visitedSquares} />
+    <div className="max-lg:mb-6 w-min">
+      <h3 className="text-center mb-2">Кликом на жељено поље, изабери почетак</h3>
+      <div className="flex flex-col gap-4 w-min">
+        <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
         <Knight position={knightPosition} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
