@@ -51,7 +51,7 @@ export default function Sidenav({ show, showCallback, username }) {
               {username && (
                 <>
                   <SignOutButton />
-                  <Link href="/nalog" onClick={() => showCallback(false)}>
+                  <Link href="/nalog">
                     <Cog6ToothIcon
                       className="w-6 hover:rotate-90 transition-transform duration-500"
                       onClick={() => showCallback(false)}
