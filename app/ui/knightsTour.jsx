@@ -74,6 +74,7 @@ export default function KnightsTour({ coordinates }) {
   }
 
   function handleBoardClick(x, y) {
+    if (!coordinates) return;
     if (isRunning) {
       return;
     }
@@ -85,7 +86,7 @@ export default function KnightsTour({ coordinates }) {
 
   return (
     <div className="max-lg:mb-6 w-min">
-      <h3 className="text-center mb-2">Кликом на жељено поље, изабери почетак</h3>
+      {coordinates && <h3 className="text-center mb-2">Кликом на жељено поље, изабери почетак</h3>}
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
         <Knight position={knightPosition} />
