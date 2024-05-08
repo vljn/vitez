@@ -1,19 +1,6 @@
-'use client';
-
 import { Bars3Icon } from '@heroicons/react/24/outline';
-import Sidenav from './sidenav';
-import { useState, useEffect } from 'react';
 
 export default function MenuButton({ isShowing, setIsShowing }) {
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (isShowing) {
-      body.classList.add('overflow-hidden');
-    } else {
-      body.classList.remove('overflow-hidden');
-    }
-  }, [isShowing]);
-
   function handleClick() {
     setIsShowing(!isShowing);
   }
