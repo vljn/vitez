@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import KnightImage from '../../public/knight-board.svg';
 import Image from 'next/image';
 
-export default function Knight({ position }) {
+export default function Knight({ position, selected }) {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -18,7 +18,9 @@ export default function Knight({ position }) {
         const xPosition = x * squareWidth + (diff + margin) / 2;
         const yPosition = y * squareWidth + (diff + margin) / 2;
         setStyle({
-          transform: `translate(${xPosition}px, ${yPosition}px)`,
+          transform: `translate(${xPosition}px, ${yPosition}px) ${
+            selected ? 'scale(1.4)' : 'scale(1)'
+          }`,
           width: `${knightSize}px`,
         });
       }
@@ -31,12 +33,13 @@ export default function Knight({ position }) {
     return () => {
       window.removeEventListener('resize', updateKnightSize);
     };
-  }, [position]);
+  }, [position, selected]);
 
   if (!position) return null;
 
   return (
     <Image
+      className={`${selected && 'drop-shadow-xl'} z-20`}
       src={KnightImage}
       alt="Knight"
       style={{
@@ -44,7 +47,6 @@ export default function Knight({ position }) {
         transition: 'transform 0.25s',
         position: 'absolute',
       }}
-      className="z-20"
     />
   );
 }
