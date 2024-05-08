@@ -47,7 +47,7 @@ export default function KnightMoves() {
     if (choosingStart) {
       reset(x, y);
       setChoosingStart(false);
-    } else if (setChoosingEnd) {
+    } else if (choosingEnd) {
       reset(knightPosition.x, knightPosition.y);
       setEnd({ x, y });
       setChoosingEnd(false);
