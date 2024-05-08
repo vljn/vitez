@@ -27,7 +27,7 @@ export default function Sidenav({ show, showCallback, username }) {
         ></div>
       ) : null}
       <nav
-        className={`fixed left-0 top-0 h-svh w-svw lg:w-96 z-40 text-knight-white py-10 px-8 pt-20 bg-primary`}
+        className={`fixed left-0 top-0 h-svh w-svw lg:w-96 z-40 text-knight-white py-10 px-8 pt-20 md:pt-24 bg-primary`}
         style={{
           transform: show ? 'translateX(0)' : 'translateX(-100svw)',
           transition: 'transform 300ms ease-in-out',
