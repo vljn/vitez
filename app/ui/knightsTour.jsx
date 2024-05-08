@@ -4,7 +4,8 @@ import { useState, useRef } from 'react';
 import Board from './board';
 import Knight from './knight';
 import Button from './button';
-import { knightsTour, moveAcrossAll } from '../lib/board';
+import { knightsTour } from '../lib/board';
+import SpeedSlider from './speedSlider';
 
 export default function KnightsTour({ coordinates }) {
   const [knightPosition, setKnightPosition] = useState({ x: 0, y: 0 });
@@ -92,38 +93,13 @@ export default function KnightsTour({ coordinates }) {
         <Knight position={knightPosition} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
-      <div className="flex items-center mt-2">
-        <label htmlFor="brzina" className="text-sm lg:text-base">
-          Брзина анимације:{' '}
-        </label>
-        <input
-          type="range"
-          onChange={(e) => {
-            setInputSpeed(parseInt(e.target.value));
-          }}
-          min={minSpeed}
-          max={maxSpeed}
-          value={inputSpeed}
-          id="brzina"
-          disabled={isRunning}
-          className="flex-1 ml-4 h-2 bg-secondary border-2 border-primary appearance-none rounded
-          [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:!bg-secondary
-          [&::-webkit-slider-thumb]:w-4
-          [&::-webkit-slider-thumb]:h-4
-          [&::-webkit-slider-thumb]:rounded-2xl
-          [&::-webkit-slider-thumb]:border-4
-          [&::-webkit-slider-thumb]:border-solid
-          [&::-webkit-slider-thumb]:border-primary
-          [&::-webkit-slider-thumb]:transition-transform
-          hover:[&::-webkit-slider-thumb]:scale-125
-          cursor-pointer
-          disabled:bg-gray-500
-          [&::-webkit-slider-thumb]:disabled:!bg-gray-500
-          hover:[&::-webkit-slider-thumb]:disabled:scale-100
-          disabled:cursor-default"
-        />
-      </div>
+      <SpeedSlider
+        min={minSpeed}
+        max={maxSpeed}
+        disabled={isRunning}
+        speed={inputSpeed}
+        setSpeed={setInputSpeed}
+      />
     </div>
   );
 }
