@@ -100,7 +100,7 @@ export default function KnightMoves() {
   }
 
   return (
-    <div className="w-min">
+    <div className="max-lg:mb-6 w-min">
       <div className="flex justify-between mb-4 gap-4">
         <Button
           onClick={() => {
