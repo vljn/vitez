@@ -29,11 +29,11 @@ export default function HeaderAndSidenav({ username }) {
   return (
     <>
       <header
-        className={`box-border sticky top-0 flex justify-between items-center px-8 py-4 lg:mb-10 transition-colors border-primary ${
-          headerBackground && 'bg-secondary border-b-2'
+        className={`box-border sticky top-0 flex z-50 justify-between items-center px-8 py-4 lg:mb-10 transition-colors border-primary ${
+          headerBackground && !isShowing && 'bg-secondary border-b-2'
         }`}
       >
-        <Title>Витез</Title>
+        <Title className={`${isShowing && 'text-background'}`}>Витез</Title>
         <div className="flex items-center gap-6 sm:gap-10">
           {username ? null : <LoginButton />}
           <MenuButton isShowing={isShowing} setIsShowing={setIsShowing} />
