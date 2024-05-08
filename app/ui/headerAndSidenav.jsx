@@ -19,6 +19,8 @@ export default function HeaderAndSidenav({ username }) {
       }
     };
 
+    if (window.scrollY >= 48) setHeaderBackground(true);
+
     window.addEventListener('scroll', scrollEvent);
 
     return () => {
