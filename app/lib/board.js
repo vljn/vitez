@@ -30,58 +30,57 @@ export function knightMoves(x1, y1, x2, y2) {
   return [];
 }
 
-export function moveAcrossAll(startX, startY) {
-  const boardSize = 8;
-  const visited = new Set();
-  const moves = [];
-  const directions = [
-    { x: 2, y: 1 },
-    { x: 1, y: 2 },
-    { x: -1, y: 2 },
-    { x: -2, y: 1 },
-    { x: -2, y: -1 },
-    { x: -1, y: -2 },
-    { x: 1, y: -2 },
-    { x: 2, y: -1 },
-  ];
-
-  const isValidMove = (x, y) =>
-    x >= 0 && x < boardSize && y >= 0 && y < boardSize && !visited.has(`${x},${y}`);
-
-  const markVisited = (x, y) => visited.add(`${x},${y}`);
-
-  const countValidMoves = (x, y) => {
-    return directions
-      .map(({ x: dx, y: dy }) => ({ x: x + dx, y: y + dy }))
-      .filter(({ x, y }) => isValidMove(x, y)).length;
+export function knightsTour(x, y) {
+  const isValid = (x, y, visited) => {
+    const valid =
+      x >= 0 &&
+      x <= 7 &&
+      y >= 0 &&
+      y <= 7 &&
+      !visited.some((square) => square.x === x && square.y === y);
+    return valid;
   };
 
-  let currentX = startX;
-  let currentY = startY;
+  const directions = [
+    { dx: -2, dy: -1 },
+    { dx: -2, dy: 1 },
+    { dx: -1, dy: -2 },
+    { dx: -1, dy: 2 },
+    { dx: 1, dy: -2 },
+    { dx: 1, dy: 2 },
+    { dx: 2, dy: -1 },
+    { dx: 2, dy: 1 },
+  ];
 
-  while (visited.size < boardSize * boardSize) {
-    moves.push({ x: currentX, y: currentY });
-    markVisited(currentX, currentY);
+  const countValidMoves = (x, y, visited) => {
+    return directions
+      .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
+      .filter(({ x, y }) => isValid(x, y, visited)).length;
+  };
 
-    let validNextMoves = directions
-      .map(({ x, y }) => ({ x: currentX + x, y: currentY + y }))
-      .filter(({ x, y }) => isValidMove(x, y));
-
-    if (validNextMoves.length === 0) {
-      // Backtrack if no valid moves
-      const lastMove = moves.pop();
-      currentX = lastMove.x;
-      currentY = lastMove.y;
-    } else {
-      // Choose the next move based on Warnsdorff's rule
-      validNextMoves.sort((a, b) => countValidMoves(a.x, a.y) - countValidMoves(b.x, b.y));
-      const nextMove = validNextMoves[0];
-      currentX = nextMove.x;
-      currentY = nextMove.y;
+  const knightsTourUtil = (x, y, visited) => {
+    if (!isValid(x, y, visited)) {
+      return;
     }
-  }
-  moves.push({ x: currentX, y: currentY });
-  markVisited(currentX, currentY);
+    visited.push({ x, y });
+    if (visited.length === 64) {
+      return visited;
+    }
+    const validMoves = directions
+      .map((obj) => ({ x: x + obj.dx, y: y + obj.dy }))
+      .filter((obj) => isValid(obj.x, obj.y, visited))
+      .map(({ x, y }) => ({ x, y, count: countValidMoves(x, y, visited) }))
+      .sort((a, b) => a.count - b.count);
 
-  return moves;
+    for (const move of validMoves) {
+      const result = knightsTourUtil(move.x, move.y, visited.slice());
+      if (result) {
+        return result;
+      }
+    }
+
+    return null;
+  };
+
+  return knightsTourUtil(x, y, []);
 }

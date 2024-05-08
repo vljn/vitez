@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import Board from './board';
 import Knight from './knight';
 import Button from './button';
-import { moveAcrossAll } from '../lib/board';
+import { knightsTour, moveAcrossAll } from '../lib/board';
 
 export default function KnightsTour({ coordinates }) {
   const [knightPosition, setKnightPosition] = useState({ x: 0, y: 0 });
@@ -37,7 +37,7 @@ export default function KnightsTour({ coordinates }) {
     }
     setIsRunning(true);
     setIsFinished(false);
-    const moves = moveAcrossAll(knightPosition.x, knightPosition.y);
+    const moves = knightsTour(knightPosition.x, knightPosition.y);
     const newVisitedSquares = [];
     let delay = 0;
     moves.forEach((move, index) => {
