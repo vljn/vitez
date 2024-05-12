@@ -267,3 +267,22 @@ export async function updatePassword(state, formData) {
     };
   }
 }
+
+export async function addResult(id, challenge) {
+  try {
+    await sql`INSERT INTO rezultati (id_korisnika, izazov, status) VALUES (${id}, ${challenge}, 'igra')`;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateResult(id, result, status) {
+  try {
+    await sql`
+    UPDATE rezultati
+    SET rezultat = ${result}, kraj = NOW()::timestamp, status = ${status}
+    WHERE id_korisnika = ${id} AND status = 'igra'`;
+  } catch (error) {
+    console.error(error);
+  }
+}
