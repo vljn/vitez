@@ -37,14 +37,10 @@ export default function Sidenav({ show, showCallback, username }) {
       >
         <div className="flex flex-col justify-between h-full">
           <div>
-            {username ? (
+            {username && (
               <h1 className="text-lg max-lg:mr-10">
                 Здраво, <span>{username}</span>
               </h1>
-            ) : (
-              <Link href="/login">
-                <h1 className="hover:underline">Улогуј се</h1>
-              </Link>
             )}
             <hr />
             {links}
