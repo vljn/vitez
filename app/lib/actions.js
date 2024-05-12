@@ -282,6 +282,8 @@ export async function updateResult(id, result, status) {
     UPDATE rezultati
     SET rezultat = ${result}, kraj = NOW()::timestamp, status = ${status}
     WHERE id_korisnika = ${id} AND status = 'igra'`;
+    revalidatePath('/konjicki-skok-izazov');
+    revalidatePath('/najkraci-put-izazov');
   } catch (error) {
     console.error(error);
   }
