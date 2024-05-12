@@ -117,6 +117,7 @@ export async function login(state, formData) {
     console.log(a);
   } catch (error) {
     if (error instanceof AuthError) {
+      console.log(error);
       switch (error.type) {
         case 'CredentialsSignin':
           return { error: 'Погрешно корисничко име или шифра' };
