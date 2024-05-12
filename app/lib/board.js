@@ -1,3 +1,5 @@
+import { isValid } from './knight';
+
 function generateBoard() {
   const arr = [...new Array(8)].map(() => Array(8).fill(''));
   return arr;
@@ -31,16 +33,6 @@ export function knightMoves(x1, y1, x2, y2) {
 }
 
 export function knightsTour(x, y) {
-  const isValid = (x, y, visited) => {
-    const valid =
-      x >= 0 &&
-      x <= 7 &&
-      y >= 0 &&
-      y <= 7 &&
-      !visited.some((square) => square.x === x && square.y === y);
-    return valid;
-  };
-
   const directions = [
     { dx: -2, dy: -1 },
     { dx: -2, dy: 1 },
