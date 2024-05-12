@@ -92,13 +92,7 @@ export default function KnightsTourChallange({ id }) {
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
         <Knight position={knightPosition} />
         <div className="flex gap-4">
-          <Button
-            onClick={handleResetButtonClick}
-            className={`flex-1 ${
-              !isRunning &&
-              'hover:cursor-not-allowed  bg-gray-600 hover:bg-gray-600 text-knight-white'
-            }`}
-          >
+          <Button onClick={handleResetButtonClick} className="flex-1" disabled={!isRunning}>
             Почни поново
           </Button>
           <Button className="flex-1" onClick={handleButtonClick}>
