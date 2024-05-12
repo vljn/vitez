@@ -14,18 +14,28 @@ export default async function Leaderboard(challenge) {
           </tr>
         </thead>
         <tbody>
-          {highestScores.map((score, index) => (
-            <tr
-              key={score.korisnicko_ime}
-              className={`border-primary ${
-                index + 1 === highestScores.length ? 'border-b-none' : 'border-b-[1px]'
-              }`}
-            >
-              <td className="px-2 sm:px-6">{score.korisnicko_ime}</td>
-              <td className="px-2 sm:px-6">{score.rezultat}</td>
-              <td className="px-2 sm:px-6">{score.vreme}</td>
-            </tr>
-          ))}
+          {highestScores.map((score, index) => {
+            const time = new Date(null);
+            time.setSeconds(score.vreme);
+            const minutes = time.getMinutes();
+            const seconds = time.getSeconds();
+
+            return (
+              <tr
+                key={score.korisnicko_ime}
+                className={`border-primary ${
+                  index + 1 === highestScores.length ? 'border-b-none' : 'border-b-[1px]'
+                }`}
+              >
+                <td className="px-2 sm:px-6">{score.korisnicko_ime}</td>
+                <td className="px-2 sm:px-6">{score.rezultat}</td>
+                <td className="px-2 sm:px-6">
+                  {minutes > 9 ? minutes : '0' + minutes}:
+                  {seconds > 9 ? time.getSeconds() : '0' + seconds}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
