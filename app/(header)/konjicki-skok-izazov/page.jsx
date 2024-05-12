@@ -1,7 +1,11 @@
+import KnightsTourChallange from '@/app/ui/KnightsTourChallange';
 import KnightsTour from '@/app/ui/knightsTour';
 import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
+import { auth } from '@/auth';
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+
   return (
     <main>
       <h1 className="text-center text-xl font-bold sm:text-2xl lg:text-4xl xl:text-5xl my-4 xl:mt-0 lg:mt-0">
@@ -12,6 +16,9 @@ export default function Page() {
         на исто поље два пута.
       </p>
       <Leaderboard challenge="konjicki skok" />
+      <div className="flex justify-center">
+        <KnightsTourChallange id={session?.user?.id} />
+      </div>
     </main>
   );
 }
