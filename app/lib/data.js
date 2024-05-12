@@ -28,7 +28,8 @@ export async function getHighestScores(challenge) {
         rezultat,
         vreme
       FROM RankedResults
-      WHERE Rank = 1;`;
+      WHERE Rank = 1
+      ORDER BY rezultat DESC, vreme ASC`;
 
     return rows;
   } catch (error) {
