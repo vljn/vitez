@@ -44,7 +44,7 @@ scores = [
   {
     rezultat: 47,
     pocetak: '2024-05-09 13:27:00',
-    kraj: '2024-05-09 13:38:22',
+    kraj: '2024-05-09 13:28:22',
     id_korisnika: '4e9422cd-4a75-41ac-add5-b555e9b00ede',
     izazov: 'konjicki skok',
     status: 'zavrsio',
