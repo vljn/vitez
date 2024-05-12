@@ -6,7 +6,7 @@ import Button from './button';
 import { useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import { isInRange, isValid } from '../lib/knight';
-import { addResult, updatePassword, updateResult } from '../lib/actions';
+import { addResult, updateResult } from '../lib/actions';
 
 export default function KnightsTourChallange({ id }) {
   const [knightPosition, setKnightPosition] = useState(null);
