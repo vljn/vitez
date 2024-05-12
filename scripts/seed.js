@@ -19,14 +19,30 @@ users = [
 scores = [
   {
     rezultat: 64,
-    datum: '2024-05-09 12:00:00',
+    pocetak: '2024-05-09 12:00:00',
+    kraj: '2024-05-09 12:08:00',
+    id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
+    izazov: 'konjicki skok',
+  },
+  {
+    rezultat: 64,
+    pocetak: '2024-05-11 13:02:00',
+    kraj: '2024-05-11 13:07:00',
     id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
     izazov: 'konjicki skok',
   },
   {
     rezultat: 33,
-    datum: '2024-05-08 16:40',
+    pocetak: '2024-05-08 16:40:00',
+    kraj: '2024-05-08 16:42:30',
     id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
+    izazov: 'konjicki skok',
+  },
+  {
+    rezultat: 47,
+    pocetak: '2024-05-09 13:27:00',
+    kraj: '2024-05-09 13:30:12',
+    id_korisnika: '4e9422cd-4a75-41ac-add5-b555e9b00ede',
     izazov: 'konjicki skok',
   },
 ];
@@ -73,13 +89,14 @@ async function seedScores(client) {
       CREATE TABLE IF NOT EXISTS rezultati(
       id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
       rezultat INT NOT NULL,
-      datum TIMESTAMP DEFAULT now() NOT NULL,
+      pocetak TIMESTAMP DEFAULT now() NOT NULL,
+      kraj TIMESTAMP,
       id_korisnika UUID NOT NULL,
       izazov VARCHAR(15) NOT NULL,
       CONSTRAINT fk_korisnik_id
       FOREIGN KEY(id_korisnika)
       REFERENCES korisnici(id),
-      UNIQUE(id_korisnika, datum)
+      UNIQUE(id_korisnika, pocetak, kraj, izazov, rezultat)
     )`;
 
     console.log('Tabela "rezultati" napravljena.');
@@ -87,8 +104,8 @@ async function seedScores(client) {
     const insertedScores = await Promise.all(
       scores.map(async (score) => {
         return client.sql`
-          INSERT INTO rezultati (rezultat, datum, id_korisnika, izazov)
-          VALUES (${score.rezultat}, ${score.datum}, ${score.id_korisnika}, ${score.izazov})
+          INSERT INTO rezultati (rezultat, pocetak, kraj, id_korisnika, izazov)
+          VALUES (${score.rezultat}, ${score.pocetak}, ${score.kraj}, ${score.id_korisnika}, ${score.izazov})
           ON CONFLICT DO NOTHING;
         `;
       })
