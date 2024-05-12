@@ -20,7 +20,7 @@ scores = [
   {
     rezultat: 64,
     pocetak: '2024-05-09 12:00:00',
-    kraj: '2024-05-09 12:08:00',
+    kraj: '2024-05-09 12:01:45',
     id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
     izazov: 'konjicki skok',
     status: 'zavrsio',
@@ -28,7 +28,7 @@ scores = [
   {
     rezultat: 64,
     pocetak: '2024-05-11 13:02:00',
-    kraj: '2024-05-11 13:07:00',
+    kraj: '2024-05-11 13:03:50',
     id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
     izazov: 'konjicki skok',
     status: 'zavrsio',
@@ -36,7 +36,7 @@ scores = [
   {
     rezultat: 33,
     pocetak: '2024-05-08 16:40:00',
-    kraj: '2024-05-08 16:42:30',
+    kraj: '2024-05-08 16:40:40',
     id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
     izazov: 'konjicki skok',
     status: 'zavrsio',
@@ -44,7 +44,7 @@ scores = [
   {
     rezultat: 47,
     pocetak: '2024-05-09 13:27:00',
-    kraj: '2024-05-09 13:30:12',
+    kraj: '2024-05-09 13:38:22',
     id_korisnika: '4e9422cd-4a75-41ac-add5-b555e9b00ede',
     izazov: 'konjicki skok',
     status: 'zavrsio',
