@@ -15,7 +15,11 @@ export default async function Page() {
         стајања на исто поље или на поље на ком коњ може бити поједен.
       </p>
       <div className="flex justify-center">
-        <KnightMovesChallenge challenge={challenge} figures={figures} />
+        {challenge ? (
+          <KnightMovesChallenge challenge={challenge} figures={figures} />
+        ) : (
+          <h2 className="text-center">Данашњи изазов још увек није доступан, покушај касније</h2>
+        )}
       </div>
     </main>
   );
