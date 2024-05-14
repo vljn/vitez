@@ -1,5 +1,4 @@
 import KnightsTourChallange from '@/app/ui/KnightsTourChallange';
-import KnightsTour from '@/app/ui/knightsTour';
 import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
 import { auth } from '@/auth';
 
