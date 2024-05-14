@@ -73,8 +73,8 @@ export default function KnightsTourChallange({ id }) {
   }
 
   return (
-    <div className="my-6 w-min text-sm">
-      <div className="mb-2 text-sm md:text-lg text-center flex justify-between">
+    <div className="my-6 w-min">
+      <div className="mb-2 text-center flex justify-between">
         {knightPosition ? (
           <>
             <h3>Резултат: {visitedSquares.length}</h3>
