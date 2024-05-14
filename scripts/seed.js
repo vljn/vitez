@@ -51,6 +51,13 @@ scores = [
   },
 ];
 
+challenges = [
+  {
+    start: { x: 0, y: 0 },
+    end: { x: 6, y: 6 },
+  },
+];
+
 async function seedUsers(client) {
   try {
     const createTable = await db.sql`
@@ -95,12 +102,11 @@ async function seedScores(client) {
       rezultat INT,
       pocetak TIMESTAMP DEFAULT now() NOT NULL,
       kraj TIMESTAMP,
-      id_korisnika UUID,
+      id_korisnika UUID NOT NULL,
       izazov VARCHAR(15) NOT NULL,
       status VARCHAR(10),
       CONSTRAINT fk_korisnik_id
-      FOREIGN KEY(id_korisnika)
-      REFERENCES korisnici(id),
+      FOREIGN KEY(id_korisnika) REFERENCES korisnici(id),
       UNIQUE(id_korisnika, pocetak, kraj, izazov, rezultat)
     )`;
 
@@ -125,11 +131,56 @@ async function seedScores(client) {
   }
 }
 
+async function seedChallenges(client) {
+  try {
+    await client.sql`
+      CREATE TABLE IF NOT EXISTS izazovi(
+        id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+        datum DATE DEFAULT CURRENT_DATE UNIQUE NOT NULL,
+        pocetak_x INTEGER NOT NULL,
+        pocetak_y INTEGER NOT NULL,
+        kraj_x INTEGER NOT NULL,
+        kraj_y INTEGER NOT NULL
+      )`;
+
+    console.log('Tabela "izazovi" napravljena.');
+
+    await client.sql`
+      CREATE TABLE IF NOT EXISTS izazovi_figure (
+        id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+        figura VARCHAR(10) NOT NULL,
+        x INTEGER NOT NULL,
+        y INTEGER NOT NULL,
+        id_izazova UUID NOT NULL,
+        FOREIGN KEY(id_izazova) REFERENCES izazovi(id)
+      )
+    `;
+
+    console.log('Tabela "izazovi_figure" napravljena.');
+
+    const insertedChallenges = await Promise.all(
+      challenges.map(async (challenge) => {
+        return client.sql`
+          INSERT INTO izazovi (pocetak_x, pocetak_y, kraj_x, kraj_y)
+          VALUES (${challenge.start.x}, ${challenge.start.y}, ${challenge.end.x}, ${challenge.end.y})
+          ON CONFLICT DO NOTHING;
+        `;
+      })
+    );
+
+    console.log(`Ubaceno ${insertedChallenges.length} izazova`);
+  } catch (error) {
+    console.error('Error: ' + error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
   await seedUsers(client);
   await seedScores(client);
+  await seedChallenges(client);
 
   await client.end();
 }
