@@ -6,7 +6,7 @@ import RookImage from '../../public/rook.svg';
 import KnightImage from '../../public/knight-board.svg';
 
 const images = {
-  knight: {
+  konj: {
     image: KnightImage,
     alt: 'Knight',
   },
