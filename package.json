@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "seed": "node -r dotenv/config ./scripts/seed.js",
+    "change-password": "node -r dotenv/config ./scripts/changePassword.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.3",
