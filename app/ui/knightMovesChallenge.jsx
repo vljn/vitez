@@ -90,7 +90,6 @@ export default function KnightMovesChallenge({ challenge, figures }) {
           Почни поново
         </Button>
       </div>
-      {/*errorEnd && <p className="absolute my-1 text-base text-red-800">{errorEnd}</p>*/}
     </div>
   );
 }
