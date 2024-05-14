@@ -36,3 +36,27 @@ export async function getHighestScores(challenge) {
     console.error(error);
   }
 }
+
+export async function getTodaysChallenge() {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM izazovi
+    WHERE datum = CURRENT_DATE`;
+
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getTodaysChallengeFigures() {
+  try {
+    const { rows } = await sql`
+    SELECT id, figura, x, y FROM izazovi_figure
+    WHERE id_izazova = (SELECT id FROM izazovi WHERE datum = CURRENT_DATE)`;
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+}
