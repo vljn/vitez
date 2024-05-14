@@ -125,7 +125,7 @@ export default function KnightMoves() {
       </div>
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} end={end} />
-        <Figure type="knight" position={knightPosition} selected={choosingStart} />
+        <Figure type="konj" position={knightPosition} selected={choosingStart} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
       <SpeedSlider

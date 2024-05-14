@@ -90,7 +90,7 @@ export default function KnightsTourChallange({ id }) {
       </div>
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
-        <Figure type="knight" position={knightPosition} />
+        <Figure type="konj" position={knightPosition} />
         <div className="flex gap-4">
           <Button onClick={handleResetButtonClick} className="flex-1" disabled={!isRunning}>
             Почни поново

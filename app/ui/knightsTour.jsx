@@ -90,7 +90,7 @@ export default function KnightsTour({ coordinates }) {
       {coordinates && <h3 className="text-center mb-2">Кликом на жељено поље, изабери почетак</h3>}
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
-        <Figure type="knight" position={knightPosition} />
+        <Figure type="konj" position={knightPosition} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
       <SpeedSlider

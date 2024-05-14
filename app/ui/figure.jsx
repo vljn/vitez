@@ -10,7 +10,7 @@ const images = {
     image: KnightImage,
     alt: 'Knight',
   },
-  rook: {
+  top: {
     image: RookImage,
     alt: 'Rook',
   },
