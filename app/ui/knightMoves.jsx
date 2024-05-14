@@ -1,11 +1,11 @@
 'use client';
 
 import Board from './board';
-import Knight from './knight';
 import Button from './button';
 import { knightMoves } from '../lib/board';
 import { useState, useRef } from 'react';
 import SpeedSlider from './speedSlider';
+import Figure from './figure';
 
 export default function KnightMoves() {
   const [knightPosition, setKnightPosition] = useState({ x: 0, y: 0 });
@@ -125,7 +125,7 @@ export default function KnightMoves() {
       </div>
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} end={end} />
-        <Knight position={knightPosition} selected={choosingStart} />
+        <Figure type="knight" position={knightPosition} selected={choosingStart} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
       <SpeedSlider

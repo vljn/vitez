@@ -1,12 +1,12 @@
 'use client';
 
 import Board from './board';
-import Knight from './knight';
 import Button from './button';
 import { useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import { isInRange, isValid } from '../lib/knight';
 import { addResult, updateResult } from '../lib/actions';
+import Figure from './figure';
 
 export default function KnightsTourChallange({ id }) {
   const [knightPosition, setKnightPosition] = useState(null);
@@ -90,7 +90,7 @@ export default function KnightsTourChallange({ id }) {
       </div>
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
-        <Knight position={knightPosition} />
+        <Figure type="knight" position={knightPosition} />
         <div className="flex gap-4">
           <Button onClick={handleResetButtonClick} className="flex-1" disabled={!isRunning}>
             Почни поново

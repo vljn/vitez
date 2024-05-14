@@ -2,10 +2,10 @@
 
 import { useState, useRef } from 'react';
 import Board from './board';
-import Knight from './knight';
 import Button from './button';
 import { knightsTour } from '../lib/board';
 import SpeedSlider from './speedSlider';
+import Figure from './figure';
 
 export default function KnightsTour({ coordinates }) {
   const [knightPosition, setKnightPosition] = useState({ x: 0, y: 0 });
@@ -90,7 +90,7 @@ export default function KnightsTour({ coordinates }) {
       {coordinates && <h3 className="text-center mb-2">Кликом на жељено поље, изабери почетак</h3>}
       <div className="flex flex-col gap-4 w-min">
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
-        <Knight position={knightPosition} />
+        <Figure type="knight" position={knightPosition} />
         <Button onClick={handleButtonClick}>{buttonText()}</Button>
       </div>
       <SpeedSlider
