@@ -2,19 +2,37 @@
 
 import Board from './board';
 import Button from './button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import { isInRange, isValid } from '../lib/knight';
 import { addResult, updateResult } from '../lib/actions';
 import Figure from './figure';
+import { countValidMoves } from '../lib/knight';
 
 export default function KnightsTourChallange({ id }) {
   const [knightPosition, setKnightPosition] = useState(null);
   const [visitedSquares, setVisitedSquares] = useState([]);
   const [error, setError] = useState(null);
-  const { minutes, seconds, start, reset, isRunning } = useStopwatch();
+  const [hasFinished, setHasFinished] = useState(false);
+  const { minutes, seconds, start, reset, pause, isRunning } = useStopwatch();
+
+  useEffect(() => {
+    function finish() {
+      setHasFinished(true);
+      pause();
+    }
+
+    if (!knightPosition) return;
+
+    if (countValidMoves(knightPosition.x, knightPosition.y, visitedSquares) === 0) {
+      finish();
+    }
+  }, [knightPosition, visitedSquares, pause]);
 
   function handleBoardClick(x, y) {
+    if (hasFinished) {
+      return;
+    }
     if (!isRunning) {
       setError(null);
       setKnightPosition({ x, y });
@@ -35,8 +53,8 @@ export default function KnightsTourChallange({ id }) {
   }
 
   function buttonText() {
-    if (isRunning) {
-      return 'Заврши';
+    if (isRunning || hasFinished) {
+      return 'Заврши и сачувај';
     } else {
       return 'Почни';
     }
@@ -64,10 +82,11 @@ export default function KnightsTourChallange({ id }) {
     reset(time, false);
     setKnightPosition(null);
     setVisitedSquares([]);
+    setHasFinished(false);
   }
 
   function handleResetButtonClick() {
-    if (!isRunning) return;
+    if (!isRunning && !hasFinished) return;
     updateResult(id, visitedSquares.length + 1, 'odustao');
     resetChallenge();
   }
@@ -92,8 +111,12 @@ export default function KnightsTourChallange({ id }) {
         <Board visitedSquares={visitedSquares} onClick={handleBoardClick} />
         <Figure type="konj" position={knightPosition} />
         <div className="flex gap-4">
-          <Button onClick={handleResetButtonClick} className="flex-1" disabled={!isRunning}>
-            Почни поново
+          <Button
+            onClick={handleResetButtonClick}
+            className="flex-1"
+            disabled={!isRunning && !hasFinished}
+          >
+            Одустани
           </Button>
           <Button className="flex-1" onClick={handleButtonClick}>
             {buttonText()}
