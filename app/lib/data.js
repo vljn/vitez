@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import { unstable_noStore } from 'next/cache';
 
 export async function getUser(id) {
   try {
@@ -38,6 +39,7 @@ export async function getHighestScores(challenge) {
 }
 
 export async function getTodaysChallenge() {
+  unstable_noStore();
   try {
     const { rows } = await sql`
     SELECT * FROM izazovi
@@ -50,6 +52,7 @@ export async function getTodaysChallenge() {
 }
 
 export async function getTodaysChallengeFigures() {
+  unstable_noStore();
   try {
     const { rows } = await sql`
     SELECT id, figura, x, y FROM izazovi_figure
