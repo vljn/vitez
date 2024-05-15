@@ -1,6 +1,6 @@
 import { getHighestScores } from '@/app/lib/data';
 
-export default async function Leaderboard(challenge) {
+export default async function Leaderboard({ challenge }) {
   const highestScores = await getHighestScores(challenge);
   if (highestScores.length < 1) return;
   return (

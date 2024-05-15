@@ -1,5 +1,6 @@
 import { getTodaysChallenge, getTodaysChallengeFigures } from '@/app/lib/data';
 import KnightMovesChallenge from '@/app/ui/knightMovesChallenge';
+import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
 
 export default async function Page() {
   const challenge = await getTodaysChallenge();
@@ -14,6 +15,7 @@ export default async function Page() {
         Пробај да стигнеш од почетног до крајњег (црвеног) поља у минималном броју потеза, без
         стајања на исто поље или на поље на ком коњ може бити поједен.
       </p>
+      <Leaderboard challenge="najkraci put" />
       <div className="flex justify-center">
         {challenge ? (
           <KnightMovesChallenge challenge={challenge} figures={figures} />

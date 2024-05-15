@@ -22,7 +22,7 @@ export async function getHighestScores(challenge) {
       FROM rezultati
       JOIN korisnici
       ON korisnici.id = id_korisnika
-      WHERE izazov = 'konjicki skok' AND status = 'zavrsio'
+      WHERE izazov = ${challenge} AND status = 'zavrsio'
       )
       SELECT 
         korisnicko_ime,
