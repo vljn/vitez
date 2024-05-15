@@ -27,3 +27,20 @@ function isAttacked(x, y, figure) {
 export function isSquareAttacked(x, y, figures) {
   return figures.some((figure) => isAttacked(x, y, figure));
 }
+
+export const directions = [
+  { dx: -2, dy: -1 },
+  { dx: -2, dy: 1 },
+  { dx: -1, dy: -2 },
+  { dx: -1, dy: 2 },
+  { dx: 1, dy: -2 },
+  { dx: 1, dy: 2 },
+  { dx: 2, dy: -1 },
+  { dx: 2, dy: 1 },
+];
+
+export function countValidMoves(x, y, visited) {
+  return directions
+    .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
+    .filter(({ x, y }) => isValid(x, y, visited)).length;
+}

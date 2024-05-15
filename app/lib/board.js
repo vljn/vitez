@@ -1,4 +1,5 @@
 import { isValid } from './knight';
+import { directions, countValidMoves } from './knight';
 
 function generateBoard() {
   const arr = [...new Array(8)].map(() => Array(8).fill(''));
@@ -33,23 +34,6 @@ export function knightMoves(x1, y1, x2, y2) {
 }
 
 export function knightsTour(x, y) {
-  const directions = [
-    { dx: -2, dy: -1 },
-    { dx: -2, dy: 1 },
-    { dx: -1, dy: -2 },
-    { dx: -1, dy: 2 },
-    { dx: 1, dy: -2 },
-    { dx: 1, dy: 2 },
-    { dx: 2, dy: -1 },
-    { dx: 2, dy: 1 },
-  ];
-
-  const countValidMoves = (x, y, visited) => {
-    return directions
-      .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
-      .filter(({ x, y }) => isValid(x, y, visited)).length;
-  };
-
   const knightsTourUtil = (x, y, visited) => {
     if (!isValid(x, y, visited)) {
       return;
