@@ -1,10 +1,12 @@
 import { getTodaysChallenge, getTodaysChallengeFigures } from '@/app/lib/data';
 import KnightMovesChallenge from '@/app/ui/knightMovesChallenge';
 import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
+import { auth } from '@/auth';
 
 export default async function Page() {
   const challenge = await getTodaysChallenge();
   const figures = await getTodaysChallengeFigures();
+  const session = await auth();
 
   return (
     <main>
@@ -18,9 +20,11 @@ export default async function Page() {
       <Leaderboard challenge="najkraci put" />
       <div className="flex justify-center">
         {challenge ? (
-          <KnightMovesChallenge challenge={challenge} figures={figures} />
+          <KnightMovesChallenge challenge={challenge} figures={figures} id={session?.user?.id} />
         ) : (
-          <h2 className="text-center">Данашњи изазов још увек није доступан, покушај касније</h2>
+          <h2 className="text-center mt-6">
+            Данашњи изазов још увек није доступан, покушај касније
+          </h2>
         )}
       </div>
     </main>

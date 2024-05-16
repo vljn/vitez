@@ -5,9 +5,16 @@ import Button from './button';
 import { useEffect, useState, useMemo } from 'react';
 import Figure from './figure';
 import { useStopwatch } from 'react-timer-hook';
-import { isValid, isInRange, isSquareAttacked } from '../lib/knight';
+import {
+  isValid,
+  isInRange,
+  isSquareAttacked,
+  countValidMoves,
+  countValidMovesFigures,
+} from '../lib/knight';
+import { addResult, updateResult } from '../lib/actions';
 
-export default function KnightMovesChallenge({ challenge, figures }) {
+export default function KnightMovesChallenge({ id, challenge, figures }) {
   const [knightPosition, setKnightPosition] = useState({
     x: challenge.pocetak_x,
     y: challenge.pocetak_y,
@@ -24,8 +31,15 @@ export default function KnightMovesChallenge({ challenge, figures }) {
     if (knightPosition.x === end.x && knightPosition.y === end.y) {
       setHasFinished(true);
       pause();
+      updateResult(id, visitedSquares.length, 'zavrsio');
+    } else if (
+      countValidMovesFigures(knightPosition.x, knightPosition.y, visitedSquares, figures) === 0
+    ) {
+      setHasFinished(true);
+      pause();
+      updateResult(id, visitedSquares.length, 'izgubio');
     }
-  }, [knightPosition, end, pause]);
+  }, [knightPosition, end, pause, visitedSquares, id, figures]);
 
   function moveKnight(x, y) {
     if (
@@ -48,6 +62,7 @@ export default function KnightMovesChallenge({ challenge, figures }) {
     const move = moveKnight(x, y);
     if (!isRunning && move) {
       start();
+      addResult(id, 'najkraci put');
     }
   }
 
@@ -61,6 +76,8 @@ export default function KnightMovesChallenge({ challenge, figures }) {
     });
     setVisitedSquares([]);
     setHasFinished(false);
+    console.log(id);
+    updateResult(id, visitedSquares.length, 'odustao');
   }
 
   function handleResetButtonClick() {
@@ -69,7 +86,7 @@ export default function KnightMovesChallenge({ challenge, figures }) {
   }
 
   return (
-    <div className="max-lg:mb-6 w-min">
+    <div className="my-6 w-min">
       {isRunning || hasFinished ? (
         <div className="flex justify-between mb-2">
           <h3>Пређено: {visitedSquares.length}</h3>

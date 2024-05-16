@@ -11,18 +11,22 @@ export async function getUser(id) {
 }
 
 export async function getHighestScores(challenge) {
+  const sort = challenge === 'konjicki skok' ? 'DESC' : 'ASC';
+  console.log(sort);
   try {
-    const { rows } = await sql`
+    const query = `
       WITH RankedResults AS (
-      SELECT 
-        korisnicko_ime,
-        rezultat,
-        ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme,
-        ROW_NUMBER() OVER (PARTITION BY id_korisnika ORDER BY rezultat DESC, kraj - pocetak ASC) AS Rank
-      FROM rezultati
-      JOIN korisnici
-      ON korisnici.id = id_korisnika
-      WHERE izazov = ${challenge} AND status = 'zavrsio'
+        SELECT 
+          korisnicko_ime,
+          rezultat,
+          ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme,
+          ROW_NUMBER() OVER (PARTITION BY id_korisnika ORDER BY rezultat ${sort}, kraj - pocetak ASC) AS Rank
+        FROM rezultati
+        JOIN korisnici
+        ON korisnici.id = id_korisnika
+        WHERE izazov = $1 AND status = 'zavrsio' ${
+          challenge === 'najkraci put' ? 'AND pocetak::date = CURRENT_DATE' : ''
+        }
       )
       SELECT 
         korisnicko_ime,
@@ -30,8 +34,10 @@ export async function getHighestScores(challenge) {
         vreme
       FROM RankedResults
       WHERE Rank = 1
-      ORDER BY rezultat DESC, vreme ASC`;
+      ORDER BY rezultat ${sort}, vreme ASC
+    `;
 
+    const { rows } = await sql.query(query, [challenge]);
     return rows;
   } catch (error) {
     console.error(error);
