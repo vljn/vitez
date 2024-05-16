@@ -44,3 +44,9 @@ export function countValidMoves(x, y, visited) {
     .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
     .filter(({ x, y }) => isValid(x, y, visited)).length;
 }
+
+export function countValidMovesFigures(x, y, visited, figures) {
+  return directions
+    .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
+    .filter(({ x, y }) => isValid(x, y, visited) && !isSquareAttacked(x, y, figures)).length;
+}
