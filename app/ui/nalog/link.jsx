@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function ProfileLink({ children, href, active }) {
+export default function AccountLink({ children, href, active }) {
   return (
     <Link
       href={href}
