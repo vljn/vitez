@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import BackgroundSwitcher from './backgroundSwitcher';
-import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import { Cog6ToothIcon, WrenchIcon } from '@heroicons/react/24/solid';
 import { SignOutButton } from './signOutButton';
 import SidenavLink from './sidenavLink';
 
@@ -50,12 +50,20 @@ export default function Sidenav({ show, showCallback, username }) {
               {username && (
                 <>
                   <SignOutButton />
-                  <Link href="/nalog">
-                    <Cog6ToothIcon
-                      className="w-6 hover:rotate-90 transition-transform duration-500"
-                      onClick={() => showCallback(false)}
-                    />
-                  </Link>
+                  <div className="flex gap-2">
+                    <Link href="/admin">
+                      <WrenchIcon
+                        className="w-6 hover:-rotate-45 transition-transform duration-500"
+                        onClick={() => showCallback(false)}
+                      />
+                    </Link>
+                    <Link href="/nalog">
+                      <Cog6ToothIcon
+                        className="w-6 hover:rotate-90 transition-transform duration-500"
+                        onClick={() => showCallback(false)}
+                      />
+                    </Link>
+                  </div>
                 </>
               )}
             </div>
