@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import MenuButton from './menuButton';
 import Sidenav from './sidenav';
 
-export default function HeaderAndSidenav({ username }) {
+export default function HeaderAndSidenav({ username, isAdmin }) {
   const [isShowing, setIsShowing] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(false);
 
@@ -41,7 +41,7 @@ export default function HeaderAndSidenav({ username }) {
           <MenuButton isShowing={isShowing} setIsShowing={setIsShowing} />
         </div>
       </header>
-      <Sidenav show={isShowing} showCallback={setIsShowing} username={username} />
+      <Sidenav show={isShowing} showCallback={setIsShowing} username={username} isAdmin={isAdmin} />
     </>
   );
 }

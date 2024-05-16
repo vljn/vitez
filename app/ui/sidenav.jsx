@@ -12,7 +12,7 @@ const pages = [
   { id: 5, link: '/najkraci-put-izazov', label: 'Најкраћи пут: изазов' },
 ];
 
-export default function Sidenav({ show, showCallback, username }) {
+export default function Sidenav({ show, showCallback, username, isAdmin }) {
   const links = pages.map((page) => (
     <div className="mt-8 text-lg" key={page.id}>
       <SidenavLink href={page.link} showCallback={showCallback}>
@@ -51,12 +51,14 @@ export default function Sidenav({ show, showCallback, username }) {
                 <>
                   <SignOutButton />
                   <div className="flex gap-2">
-                    <Link href="/admin">
-                      <WrenchIcon
-                        className="w-6 hover:-rotate-45 transition-transform duration-500"
-                        onClick={() => showCallback(false)}
-                      />
-                    </Link>
+                    {isAdmin && (
+                      <Link href="/admin">
+                        <WrenchIcon
+                          className="w-6 hover:-rotate-45 transition-transform duration-500"
+                          onClick={() => showCallback(false)}
+                        />
+                      </Link>
+                    )}
                     <Link href="/nalog">
                       <Cog6ToothIcon
                         className="w-6 hover:rotate-90 transition-transform duration-500"
