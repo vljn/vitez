@@ -76,7 +76,6 @@ export default function KnightMovesChallenge({ id, challenge, figures }) {
     });
     setVisitedSquares([]);
     setHasFinished(false);
-    console.log(id);
     updateResult(id, visitedSquares.length, 'odustao');
   }
 

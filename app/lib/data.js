@@ -12,7 +12,6 @@ export async function getUser(id) {
 
 export async function getHighestScores(challenge) {
   const sort = challenge === 'konjicki skok' ? 'DESC' : 'ASC';
-  console.log(sort);
   try {
     const query = `
       WITH RankedResults AS (

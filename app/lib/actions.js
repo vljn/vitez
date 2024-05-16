@@ -113,11 +113,9 @@ export async function login(state, formData) {
   const { username, password } = validatedFields.data;
 
   try {
-    await signIn('credentials', { username, password });
-    console.log(a);
+    await signIn('credentials', { username, password, redirect: true, redirectTo: '/' });
   } catch (error) {
     if (error instanceof AuthError) {
-      console.log(error);
       switch (error.type) {
         case 'CredentialsSignin':
           return { error: 'Погрешно корисничко име или шифра' };
