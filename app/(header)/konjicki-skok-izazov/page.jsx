@@ -1,5 +1,5 @@
-import KnightsTourChallange from '@/app/ui/KnightsTourChallange';
-import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
+import KnightsTourChallange from '@/app/ui/challenges/KnightsTourChallange';
+import Leaderboard from '@/app/ui/challenges/leaderboard';
 import { auth } from '@/auth';
 
 export default async function Page() {

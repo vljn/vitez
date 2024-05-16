@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import KnightsTour from '@/app/ui/knightsTour';
+import KnightsTour from '@/app/ui/simulations/knightsTour';
 
 export default function Page() {
   return (

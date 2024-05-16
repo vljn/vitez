@@ -1,13 +1,13 @@
 'use client';
 
-import Board from './board';
-import Button from './button';
+import Board from '../board/board';
+import Button from '../button';
 import { useEffect, useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
-import { isInRange, isValid } from '../lib/knight';
-import { addResult, updateResult } from '../lib/actions';
-import Figure from './figure';
-import { countValidMoves } from '../lib/knight';
+import { isInRange, isValid } from '../../lib/knight';
+import { addResult, updateResult } from '../../lib/actions';
+import Figure from '../board/figure';
+import { countValidMoves } from '../../lib/knight';
 
 export default function KnightsTourChallange({ id }) {
   const [knightPosition, setKnightPosition] = useState(null);

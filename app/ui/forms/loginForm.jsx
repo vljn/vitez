@@ -3,7 +3,7 @@
 import FormButton from './formButton';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
-import { login } from '../lib/actions';
+import { login } from '../../lib/actions';
 import FormField from './formField';
 import FormError from './formError';
 

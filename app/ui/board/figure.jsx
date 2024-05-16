@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import RookImage from '../../public/rook.svg';
-import KnightImage from '../../public/knight-board.svg';
+import RookImage from '../../../public/rook.svg';
+import KnightImage from '../../../public/knight-board.svg';
 
 const images = {
   konj: {

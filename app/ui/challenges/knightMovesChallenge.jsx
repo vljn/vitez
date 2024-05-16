@@ -1,9 +1,9 @@
 'use client';
 
-import Board from './board';
-import Button from './button';
+import Board from '../board/board';
+import Button from '../button';
 import { useEffect, useState, useMemo } from 'react';
-import Figure from './figure';
+import Figure from '../board/figure';
 import { useStopwatch } from 'react-timer-hook';
 import {
   isValid,
@@ -11,8 +11,8 @@ import {
   isSquareAttacked,
   countValidMoves,
   countValidMovesFigures,
-} from '../lib/knight';
-import { addResult, updateResult } from '../lib/actions';
+} from '../../lib/knight';
+import { addResult, updateResult } from '../../lib/actions';
 
 export default function KnightMovesChallenge({ id, challenge, figures }) {
   const [knightPosition, setKnightPosition] = useState({

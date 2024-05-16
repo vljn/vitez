@@ -1,6 +1,6 @@
 import { getTodaysChallenge, getTodaysChallengeFigures } from '@/app/lib/data';
-import KnightMovesChallenge from '@/app/ui/knightMovesChallenge';
-import Leaderboard from '@/app/ui/konjicki-skok-izazov/leaderboard';
+import KnightMovesChallenge from '@/app/ui/challenges/knightMovesChallenge';
+import Leaderboard from '@/app/ui/challenges/leaderboard';
 import { auth } from '@/auth';
 
 export default async function Page() {

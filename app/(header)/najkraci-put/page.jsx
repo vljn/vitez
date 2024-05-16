@@ -1,4 +1,4 @@
-import KnightMoves from '@/app/ui/knightMoves';
+import KnightMoves from '@/app/ui/simulations/knightMoves';
 
 export default function Page() {
   return (

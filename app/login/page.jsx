@@ -1,4 +1,4 @@
-import LoginForm from '../ui/loginForm';
+import LoginForm from '../ui/forms/loginForm';
 import Title from '../ui/title';
 
 export default async function Page() {

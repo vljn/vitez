@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
-import KnightsTour from '../ui/knightsTour';
+import KnightsTour from '../ui/simulations/knightsTour';
 
 export default async function Home() {
   const session = await auth();

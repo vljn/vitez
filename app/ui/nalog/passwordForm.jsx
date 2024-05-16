@@ -1,10 +1,10 @@
 'use client';
 
-import FormButton from '../formButton';
-import FormField from '../formField';
+import FormButton from '../forms/formButton';
+import FormField from '../forms/formField';
 import { useFormState } from 'react-dom';
 import { updatePassword } from '@/app/lib/actions';
-import FormError from '../formError';
+import FormError from '../forms/formError';
 
 export default function PasswordForm({ id }) {
   const [state, action] = useFormState(updatePassword, undefined);

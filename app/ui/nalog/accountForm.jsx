@@ -1,10 +1,10 @@
 'use client';
 
-import FormButton from '../formButton';
-import FormFieldControlled from '../formFieldControlled';
+import FormButton from '../forms/formButton';
+import FormFieldControlled from '../forms/formFieldControlled';
 import { useFormState } from 'react-dom';
 import { update } from '@/app/lib/actions';
-import FormError from '../formError';
+import FormError from '../forms/formError';
 
 export default function AccountForm({ id, username, email }) {
   const [state, action] = useFormState(update, undefined);

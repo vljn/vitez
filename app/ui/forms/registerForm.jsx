@@ -1,7 +1,7 @@
 'use client';
 
 import FormButton from './formButton';
-import { register } from '../lib/actions';
+import { register } from '../../lib/actions';
 import { useFormState } from 'react-dom';
 import FormField from './formField';
 import Link from 'next/link';

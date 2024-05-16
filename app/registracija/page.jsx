@@ -1,4 +1,4 @@
-import RegisterForm from '../ui/registerForm';
+import RegisterForm from '../ui/forms/registerForm';
 import Title from '../ui/title';
 
 export default async function Page() {
