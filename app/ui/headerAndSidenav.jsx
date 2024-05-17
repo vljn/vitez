@@ -12,14 +12,14 @@ export default function HeaderAndSidenav({ username, isAdmin }) {
 
   useEffect(() => {
     const scrollEvent = () => {
-      if (window.scrollY >= 48) {
+      if (window.scrollY > 8) {
         setHeaderBackground(true);
       } else {
         setHeaderBackground(false);
       }
     };
 
-    if (window.scrollY >= 48) setHeaderBackground(true);
+    if (window.scrollY > 8) setHeaderBackground(true);
 
     window.addEventListener('scroll', scrollEvent);
 
