@@ -106,7 +106,7 @@ async function seedScores(client) {
       izazov VARCHAR(15) NOT NULL,
       status VARCHAR(10),
       CONSTRAINT fk_korisnik_id
-      FOREIGN KEY(id_korisnika) REFERENCES korisnici(id),
+      FOREIGN KEY(id_korisnika) REFERENCES korisnici(id) ON DELETE CASCADE,
       UNIQUE(id_korisnika, pocetak, kraj, izazov, rezultat)
     )`;
 

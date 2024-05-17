@@ -16,6 +16,7 @@ module.exports = {
         background: '#caa776',
         primary: '#301c11',
         secondary: '#a88b70',
+        'secondary-brighter': '#c4a689',
         'knight-white': '#fcdfd0',
       },
       fontFamily: {

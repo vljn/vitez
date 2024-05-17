@@ -10,6 +10,15 @@ export async function getUser(id) {
   }
 }
 
+export async function getUsers() {
+  try {
+    const { rows } = await sql`SELECT * FROM korisnici`;
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getHighestScores(challenge) {
   const sort = challenge === 'konjicki skok' ? 'DESC' : 'ASC';
   try {

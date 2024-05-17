@@ -127,6 +127,16 @@ export async function login(state, formData) {
   }
 }
 
+export async function deleteUser(formData) {
+  const id = formData.get('id');
+  try {
+    await sql`DELETE FROM korisnici WHERE id = ${id}`;
+    revalidatePath('/admin/korisnici');
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const UpdateFormSchema = z
   .object({
     username: z
