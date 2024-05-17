@@ -1,5 +1,3 @@
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
 import Links from '../../ui/nalog/links';
 
 export default async function Layout({ children }) {
