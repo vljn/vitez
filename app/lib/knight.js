@@ -1,4 +1,4 @@
-export function isValid(x, y, notAllowed) {
+export function isValid(x, y, notAllowed = []) {
   const valid =
     x >= 0 &&
     x <= 7 &&
