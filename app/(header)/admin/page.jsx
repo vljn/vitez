@@ -15,5 +15,7 @@ export default async function Page() {
     }
   }
 
-  return;
+  return (
+    <h1 className="text-center font-bold lg:text-xl">Добродошли на администраторску страницу!</h1>
+  );
 }
