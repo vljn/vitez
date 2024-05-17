@@ -4,19 +4,17 @@ import { usePathname } from 'next/navigation';
 import { UserIcon, KeyIcon } from '@heroicons/react/24/outline';
 import AccountLink from './link';
 
-export default function Links() {
+export default function Links({ links = [] }) {
   const pathName = usePathname();
 
   return (
     <nav>
-      <AccountLink href="/nalog" active={pathName === '/nalog'}>
-        <UserIcon className="w-6" />
-        <span>Налог</span>
-      </AccountLink>
-      <AccountLink href="/nalog/lozinka" active={pathName === '/nalog/lozinka'}>
-        <KeyIcon className="w-6" />
-        <span>Промена лозинке</span>
-      </AccountLink>
+      {links.map((link) => (
+        <AccountLink key={link.id} href={link.href} active={pathName === link.href}>
+          {link.icon}
+          <span>{link.label}</span>
+        </AccountLink>
+      ))}
     </nav>
   );
 }
