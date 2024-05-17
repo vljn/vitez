@@ -11,7 +11,7 @@ export default function Links({ links = [] }) {
     <nav>
       {links.map((link) => (
         <AccountLink key={link.id} href={link.href} active={pathName === link.href}>
-          {link.icon}
+          {pathName !== link.href ? link.icon : link.iconActive}
           <span>{link.label}</span>
         </AccountLink>
       ))}
