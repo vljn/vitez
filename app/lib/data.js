@@ -3,7 +3,8 @@ import { unstable_noStore } from 'next/cache';
 
 export async function getUser(id) {
   try {
-    const { rows } = await sql`SELECT * FROM korisnici WHERE id = ${id}`;
+    const { rows } =
+      await sql`SELECT id, korisnicko_ime, mejl, uloga FROM korisnici WHERE id = ${id}`;
     return rows[0];
   } catch (error) {
     console.error(error);
@@ -12,7 +13,7 @@ export async function getUser(id) {
 
 export async function getUsers() {
   try {
-    const { rows } = await sql`SELECT * FROM korisnici`;
+    const { rows } = await sql`SELECT id, korisnicko_ime, mejl, uloga FROM korisnici`;
     return rows;
   } catch (error) {
     console.error(error);
