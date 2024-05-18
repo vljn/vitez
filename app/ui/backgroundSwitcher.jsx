@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 export default function BackgroundSwitcher() {
-  const [isOn, setIsOn] = useState(true);
+  const [isOn, setIsOn] = useState(false);
 
   function handleChange() {
     setIsOn(!isOn);
