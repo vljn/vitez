@@ -1,15 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import SignOutClient from './signOutClient.jsx';
+import { signOut } from 'next-auth/react';
 
 export function SignOutButton() {
-  const [clicked, setClicked] = useState(false);
-
   return (
     <>
-      {clicked && <SignOutClient />}
-      <button onClick={() => setClicked(true)} className="hover:underline">
+      <button onClick={() => signOut()} className="hover:underline">
         Излогуј се
       </button>
     </>

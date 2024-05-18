@@ -1,5 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { unstable_noStore } from 'next/cache';
+import { InvalidChallengeError } from './errors';
 
 export async function getUser(id) {
   try {
@@ -12,8 +13,50 @@ export async function getUser(id) {
 }
 
 export async function getUsers() {
+  unstable_noStore();
   try {
     const { rows } = await sql`SELECT id, korisnicko_ime, mejl, uloga FROM korisnici`;
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getScores(challenge, orderBy = [{ column: 'id', direction: 'ASC' }]) {
+  unstable_noStore();
+  const allowedColumns = ['id', 'rezultat', 'izazov', 'vreme'];
+  const allowedDirections = ['ASC', 'DESC'];
+  const allowedChallenges = ['konjicki skok', 'najkraci put'];
+
+  for (const criterion of orderBy) {
+    if (!allowedColumns.includes(criterion.column)) {
+      throw new Error(`Invalid column to order by: ${criterion.column}`);
+    }
+    if (!allowedDirections.includes(criterion.direction)) {
+      throw new Error(`Invalid order direction: ${criterion.direction}`);
+    }
+  }
+
+  if (challenge && !allowedChallenges.includes(challenge)) {
+    throw new InvalidChallengeError(`Invalid challenge: ${challenge}`);
+  }
+
+  const orderClause = orderBy
+    .map((criterion) => `${criterion.column} ${criterion.direction}`)
+    .join(', ');
+
+  const whereClause = challenge ? `WHERE izazov = '${challenge}'` : '';
+
+  try {
+    const query = `
+      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme
+      FROM rezultati
+      JOIN korisnici ON korisnici.id = id_korisnika
+      ${whereClause}
+      ORDER BY ${orderClause}
+    `;
+
+    const { rows } = await sql.query(query);
     return rows;
   } catch (error) {
     console.error(error);
