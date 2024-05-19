@@ -1,7 +1,7 @@
 import React from 'react';
 import Square from './square';
 
-export default function Board({ visitedSquares, onClick, end }) {
+export default function Board({ visitedSquares = [], onClick = () => {}, end = null }) {
   const renderRow = (rowIndex) => {
     const cells = [];
     for (let i = 0; i < 8; i++) {
