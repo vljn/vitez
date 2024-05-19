@@ -22,9 +22,9 @@ export async function getUsers() {
   }
 }
 
-export async function getScores(challenge, orderBy = [{ column: 'id', direction: 'ASC' }]) {
+export async function getScores(challenge, orderBy = [{ column: 'pocetak', direction: 'ASC' }]) {
   unstable_noStore();
-  const allowedColumns = ['id', 'rezultat', 'izazov', 'vreme'];
+  const allowedColumns = ['id', 'rezultat', 'izazov', 'vreme', 'pocetak', 'kraj'];
   const allowedDirections = ['ASC', 'DESC'];
   const allowedChallenges = ['konjicki skok', 'najkraci put'];
 
@@ -49,7 +49,7 @@ export async function getScores(challenge, orderBy = [{ column: 'id', direction:
 
   try {
     const query = `
-      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme
+      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, status, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme
       FROM rezultati
       JOIN korisnici ON korisnici.id = id_korisnika
       ${whereClause}
