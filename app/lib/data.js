@@ -49,7 +49,7 @@ export async function getScores(challenge, orderBy = [{ column: 'pocetak', direc
 
   try {
     const query = `
-      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, status, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme
+      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, status, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme, pocetak::date AS datum
       FROM rezultati
       JOIN korisnici ON korisnici.id = id_korisnika
       ${whereClause}

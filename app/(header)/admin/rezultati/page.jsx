@@ -1,5 +1,6 @@
 import { getScores } from '@/app/lib/data';
 import { redirect } from 'next/navigation';
+import { DateTime } from 'luxon';
 
 export default async function Page({ searchParams }) {
   const challenge = searchParams.izazov || null;
@@ -46,6 +47,7 @@ export default async function Page({ searchParams }) {
               <th className="px-6 py-4">Време</th>
               <th className="px-6 py-4">Изазов</th>
               <th className="px-6 py-4">Статус</th>
+              <th className="px-6 py-4">Датум</th>
             </tr>
           </thead>
           <tbody>
@@ -60,6 +62,7 @@ export default async function Page({ searchParams }) {
                 <td className="px-6 py-2">{score.vreme}</td>
                 <td className="px-6 py-2">{score.izazov}</td>
                 <td className="px-6 py-2">{score.status}</td>
+                <td className="px-6 py-2">{DateTime.fromJSDate(score.datum).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
