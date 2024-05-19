@@ -28,6 +28,19 @@ export default function KnightMovesChallenge({ id, challenge, figures }) {
   );
 
   useEffect(() => {
+    function handleClose() {
+      if (visitedSquares.length !== 0) {
+        updateResult(id, visitedSquares.length + 1, 'odustao');
+      }
+    }
+
+    window.addEventListener('beforeunload', handleClose);
+    return () => {
+      window.removeEventListener('beforeunload', handleClose);
+    };
+  }, [visitedSquares, id]);
+
+  useEffect(() => {
     if (knightPosition.x === end.x && knightPosition.y === end.y) {
       setHasFinished(true);
       pause();

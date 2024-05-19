@@ -17,6 +17,19 @@ export default function KnightsTourChallange({ id }) {
   const { minutes, seconds, start, reset, pause, isRunning } = useStopwatch();
 
   useEffect(() => {
+    function handleClose() {
+      if (visitedSquares.length !== 0) {
+        updateResult(id, visitedSquares.length + 1, 'odustao');
+      }
+    }
+
+    window.addEventListener('beforeunload', handleClose);
+    return () => {
+      window.removeEventListener('beforeunload', handleClose);
+    };
+  }, [visitedSquares, id]);
+
+  useEffect(() => {
     function finish() {
       setHasFinished(true);
       pause();
