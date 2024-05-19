@@ -320,3 +320,24 @@ export async function getFigures(date) {
     return rows;
   } catch (error) {}
 }
+
+export async function addChallenge(knightPosition, endPosition, date, figures = []) {
+  try {
+    const { rows } = await sql`
+    INSERT INTO izazovi (datum, pocetak_x, pocetak_y, kraj_x, kraj_y)
+    VALUES (${date}, ${knightPosition.x}, ${knightPosition.y}, ${endPosition.x}, ${endPosition.y})
+    RETURNING id`;
+
+    const id = rows[0].id;
+
+    figures.forEach(async (figure) => {
+      console.log(figure);
+      await sql`
+      INSERT INTO izazovi_figure (figura, x, y, id_izazova)
+      VALUES (${figure.figure}, ${figure.x}, ${figure.y}, ${id})`;
+    });
+    revalidatePath('/admin/izazovi');
+  } catch (error) {
+    console.error(error);
+  }
+}
