@@ -23,7 +23,7 @@ const links = [
   },
   {
     id: 2,
-    label: 'Изаови',
+    label: 'Изазови',
     href: '/admin/izazovi',
     icon: <PuzzlePieceIcon className="w-6" />,
     iconActive: <PuzzlePieceIconSolid className="w-6" />,
