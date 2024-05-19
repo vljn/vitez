@@ -17,6 +17,7 @@ const images = {
 };
 
 export default function Figure({ type, position, selected }) {
+  const [loading, setLoading] = useState(true);
   const [style, setStyle] = useState({
     transition: 'transform 0.25s',
     position: 'absolute',
@@ -42,9 +43,13 @@ export default function Figure({ type, position, selected }) {
       }
     };
 
+    setLoading(true);
+
     updateSize();
 
     window.addEventListener('resize', updateSize);
+
+    setLoading(false);
 
     return () => {
       window.removeEventListener('resize', updateSize);
@@ -52,6 +57,8 @@ export default function Figure({ type, position, selected }) {
   }, [position, selected]);
 
   if (!position) return null;
+
+  if (loading) return null;
 
   return (
     <Image
