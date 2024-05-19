@@ -297,3 +297,26 @@ export async function updateResult(id, result, status) {
     console.error(error);
   }
 }
+
+export async function getChallenge(date) {
+  console.log(date);
+  try {
+    const { rows } = await sql`
+      SELECT * FROM izazovi
+      WHERE datum = ${date}`;
+
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getFigures(date) {
+  try {
+    const { rows } = await sql`
+      SELECT id, figura, x, y FROM izazovi_figure
+    WHERE id_izazova = (SELECT id FROM izazovi WHERE datum = ${date});`;
+
+    return rows;
+  } catch (error) {}
+}

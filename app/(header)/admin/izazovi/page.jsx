@@ -1,11 +1,6 @@
-import DatePicker from '@/app/ui/admin/datePicker';
-import { DateTime } from 'luxon';
+import ChallengeEditor from '@/app/ui/admin/challengeEditor';
 
 export default function Page() {
   const date = new Date();
-  return (
-    <div>
-      <DatePicker date={date} />
-    </div>
-  );
+  return <ChallengeEditor date={date} />;
 }
