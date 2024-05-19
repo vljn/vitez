@@ -152,7 +152,7 @@ async function seedChallenges(client) {
         x INTEGER NOT NULL,
         y INTEGER NOT NULL,
         id_izazova UUID NOT NULL,
-        FOREIGN KEY(id_izazova) REFERENCES izazovi(id)
+        FOREIGN KEY(id_izazova) REFERENCES izazovi(id) ON DELETE CASCADE
       )
     `;
 
