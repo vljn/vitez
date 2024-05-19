@@ -25,7 +25,7 @@ export default function Figure({ type, position, selected }) {
 
   useEffect(() => {
     const updateSize = () => {
-      if (position) {
+      if (position && !isNaN(position.x) && !isNaN(position.y)) {
         const { x, y } = position;
         const squareWidth = parseFloat(getComputedStyle(document.querySelector('.square')).width);
         const margin = 2;
@@ -56,7 +56,7 @@ export default function Figure({ type, position, selected }) {
     };
   }, [position, selected]);
 
-  if (!position) return null;
+  if (position === null || isNaN(position.x) || isNaN(position.y)) return null;
 
   if (loading) return null;
 
