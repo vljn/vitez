@@ -16,7 +16,7 @@ export default function FormField({ label, type, name, id, error, last }) {
         type={showPassword ? 'text' : type}
         name={name}
         id={id}
-        className="appearance-none rounded bg-primary border-none text-knight-white focus: px-3 py-2 w-full leading-tight focus:ring-knight-white"
+        className="appearance-none rounded bg-primary border-none text-knight-white px-3 py-2 w-full leading-tight focus:ring-knight-white"
       />
       {type === 'password' && (
         <button
