@@ -24,7 +24,7 @@ export async function getUsers() {
 
 export async function getScores(challenge, orderBy = [{ column: 'pocetak', direction: 'ASC' }]) {
   unstable_noStore();
-  const allowedColumns = ['id', 'rezultat', 'izazov', 'vreme', 'pocetak', 'kraj'];
+  const allowedColumns = ['id', 'rezultat', 'tip', 'vreme', 'pocetak', 'kraj'];
   const allowedDirections = ['ASC', 'DESC'];
   const allowedChallenges = ['konjicki skok', 'najkraci put'];
 
@@ -45,11 +45,11 @@ export async function getScores(challenge, orderBy = [{ column: 'pocetak', direc
     .map((criterion) => `${criterion.column} ${criterion.direction}`)
     .join(', ');
 
-  const whereClause = challenge ? `WHERE izazov = '${challenge}'` : '';
+  const whereClause = challenge ? `WHERE tip = '${challenge}'` : '';
 
   try {
     const query = `
-      SELECT rezultati.id, rezultat, korisnicko_ime, izazov, status, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme, pocetak::date AS datum
+      SELECT rezultati.id, rezultat, korisnicko_ime, tip, status, ROUND(EXTRACT(EPOCH FROM kraj - pocetak), 2) AS vreme, pocetak::date AS datum
       FROM rezultati
       JOIN korisnici ON korisnici.id = id_korisnika
       ${whereClause}
@@ -76,7 +76,7 @@ export async function getHighestScores(challenge) {
         FROM rezultati
         JOIN korisnici
         ON korisnici.id = id_korisnika
-        WHERE izazov = $1 AND status = 'zavrsio' ${
+        WHERE tip = $1 AND status = 'zavrsio' ${
           challenge === 'najkraci put' ? 'AND pocetak::date = CURRENT_DATE' : ''
         }
       )

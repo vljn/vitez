@@ -279,7 +279,7 @@ export async function updatePassword(state, formData) {
 
 export async function addResult(id, challenge) {
   try {
-    await sql`INSERT INTO rezultati (id_korisnika, izazov, status) VALUES (${id}, ${challenge}, 'igra')`;
+    await sql`INSERT INTO rezultati (id_korisnika, tip, status) VALUES (${id}, ${challenge}, 'igra')`;
   } catch (error) {
     console.error(error);
   }

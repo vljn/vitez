@@ -60,7 +60,7 @@ export default async function Page({ searchParams }) {
                 <td className="px-6 py-2">{score.korisnicko_ime}</td>
                 <td className="px-6 py-2">{score.rezultat}</td>
                 <td className="px-6 py-2">{score.vreme}</td>
-                <td className="px-6 py-2">{score.izazov}</td>
+                <td className="px-6 py-2">{score.tip}</td>
                 <td className="px-6 py-2">{score.status}</td>
                 <td className="px-6 py-2">{DateTime.fromJSDate(score.datum).toLocaleString()}</td>
               </tr>
