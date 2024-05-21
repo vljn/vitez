@@ -6,10 +6,10 @@ import SidenavLink from './sidenavLink';
 
 const pages = [
   { id: 1, link: '/', label: 'Почетна' },
-  { id: 2, link: '/problem_konjickog_skoka', label: 'Проблем коњичког скока' },
-  { id: 3, link: '/konjicki-skok-izazov', label: 'Коњички скок: изазов' },
-  { id: 4, link: '/najkraci-put', label: 'Најкраћи пут' },
-  { id: 5, link: '/najkraci-put-izazov', label: 'Најкраћи пут: изазов' },
+  { id: 2, link: '/najkraci-put', label: 'Најкраћи пут' },
+  { id: 3, link: '/najkraci-put-izazov', label: 'Најкраћи пут: изазов' },
+  { id: 4, link: '/problem_konjickog_skoka', label: 'Проблем коњичког скока' },
+  { id: 5, link: '/konjicki-skok-izazov', label: 'Коњички скок: изазов' },
 ];
 
 export default function Sidenav({ show, showCallback, username, isAdmin }) {
