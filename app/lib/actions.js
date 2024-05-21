@@ -298,6 +298,16 @@ export async function updateResult(id, result, status) {
   }
 }
 
+export async function deleteResult(formData) {
+  const id = formData.get('id');
+  try {
+    await sql`DELETE FROM rezultati WHERE id = ${id}`;
+    revalidatePath('/admin/rezultati');
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getChallenge(date) {
   console.log(date);
   try {

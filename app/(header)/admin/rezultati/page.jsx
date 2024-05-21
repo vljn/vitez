@@ -1,6 +1,7 @@
 import { getScores } from '@/app/lib/data';
 import { redirect } from 'next/navigation';
 import { DateTime } from 'luxon';
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 export default async function Page({ searchParams }) {
   const challenge = searchParams.izazov || null;
@@ -48,6 +49,9 @@ export default async function Page({ searchParams }) {
               <th className="px-6 py-4">Изазов</th>
               <th className="px-6 py-4">Статус</th>
               <th className="px-6 py-4">Датум</th>
+              <th className="px-6 py-4">
+                <span className="sr-only">Избриши</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -63,6 +67,14 @@ export default async function Page({ searchParams }) {
                 <td className="px-6 py-2">{score.tip}</td>
                 <td className="px-6 py-2">{score.status}</td>
                 <td className="px-6 py-2">{DateTime.fromJSDate(score.datum).toLocaleString()}</td>
+                <td>
+                  <form>
+                    <input type="hidden" name="id" value={score.id} />
+                    <button type="submit">
+                      <TrashIcon className="w-6 hover:cursor-pointer" />
+                    </button>
+                  </form>
+                </td>
               </tr>
             ))}
           </tbody>
