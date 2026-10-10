@@ -44,7 +44,7 @@ export default function RegisterForm() {
           error={state?.errors?.confirmPassword && state.errors.confirmPassword[0]}
           last={true}
         />
-        {state?.message && <p>state.message</p>}
+        {state?.message && <p className="mb-4 text-sm text-red-200">{state.message}</p>}
         <FormButton>Региструј се</FormButton>
         <p className="text-sm lg:text-base mt-3">
           Ипак имаш налог? Улогуј се{' '}

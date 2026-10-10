@@ -9,7 +9,7 @@ export default function FormField({ label, type, name, id, error, last }) {
 
   return (
     <div className={`${last ? 'mb-8' : 'mb-4'} relative`}>
-      <label htmlFor="password" className="block font-bold text-sm mb-2 lg:text-lg">
+      <label htmlFor={id} className="block font-bold text-sm mb-2 lg:text-lg">
         {label}
       </label>
       <input
