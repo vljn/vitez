@@ -1,27 +1,27 @@
 const { db } = require('../app/lib/db');
 const bcrypt = require('bcryptjs');
 
-users = [
+const users = [
   {
-    korisnicko_ime: 'veljan',
-    mejl: 'atanaskovicveljko80@gmail.com',
-    sifra: 'veljkoveljko',
+    korisnicko_ime: 'adminUser',
+    mejl: 'admin@example.com',
+    sifra: 'Admin1234',
     uloga: 'admin',
   },
   {
-    korisnicko_ime: 'test',
-    mejl: 'test@test.com',
-    sifra: 'testtest',
+    korisnicko_ime: 'demoUser',
+    mejl: 'demo@example.com',
+    sifra: 'Demo1234',
     uloga: 'korisnik',
   },
 ];
 
-scores = [
+const scores = [
   {
     rezultat: 64,
     pocetak: '2024-05-09 12:00:00',
     kraj: '2024-05-09 12:01:45',
-    id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
+    korisnicko_ime: 'adminUser',
     tip: 'konjicki skok',
     status: 'zavrsio',
   },
@@ -29,7 +29,7 @@ scores = [
     rezultat: 64,
     pocetak: '2024-05-11 13:02:00',
     kraj: '2024-05-11 13:03:50',
-    id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
+    korisnicko_ime: 'adminUser',
     tip: 'konjicki skok',
     status: 'zavrsio',
   },
@@ -37,7 +37,7 @@ scores = [
     rezultat: 33,
     pocetak: '2024-05-08 16:40:00',
     kraj: '2024-05-08 16:40:40',
-    id_korisnika: '17a9ccec-104f-41bf-ad13-18cd51f18b9e',
+    korisnicko_ime: 'adminUser',
     tip: 'konjicki skok',
     status: 'zavrsio',
   },
@@ -45,13 +45,13 @@ scores = [
     rezultat: 47,
     pocetak: '2024-05-09 13:27:00',
     kraj: '2024-05-09 13:28:22',
-    id_korisnika: '4e9422cd-4a75-41ac-add5-b555e9b00ede',
+    korisnicko_ime: 'demoUser',
     tip: 'konjicki skok',
     status: 'zavrsio',
   },
 ];
 
-challenges = [
+const challenges = [
   {
     start: { x: 0, y: 0 },
     end: { x: 6, y: 6 },
@@ -71,16 +71,17 @@ async function seedUsers(client) {
 
     console.log('Tabela "korisnici" napravljena.');
 
-    const insertedUsers = await Promise.all(
-      users.map(async (user) => {
-        const hashedPassword = await bcrypt.hash(user.sifra, 10);
-        return client.sql`
-          INSERT INTO korisnici (korisnicko_ime, mejl, sifra, uloga)
-          VALUES (${user.korisnicko_ime}, ${user.mejl}, ${hashedPassword}, ${user.uloga})
-          ON CONFLICT DO NOTHING;
-        `;
-      })
-    );
+    const insertedUsers = [];
+    for (const user of users) {
+      const hashedPassword = await bcrypt.hash(user.sifra, 10);
+      const result = await client.sql`
+        INSERT INTO korisnici (korisnicko_ime, mejl, sifra, uloga)
+        VALUES (${user.korisnicko_ime}, ${user.mejl}, ${hashedPassword}, ${user.uloga})
+        ON CONFLICT DO NOTHING
+        RETURNING id;
+      `;
+      insertedUsers.push(result);
+    }
 
     console.log(`Ubaceno ${insertedUsers.length} korisnika`);
 
@@ -112,15 +113,23 @@ async function seedScores(client) {
 
     console.log('Tabela "rezultati" napravljena.');
 
-    const insertedScores = await Promise.all(
-      scores.map(async (score) => {
-        return client.sql`
-          INSERT INTO rezultati (rezultat, pocetak, kraj, id_korisnika, tip, status)
-          VALUES (${score.rezultat}, ${score.pocetak}, ${score.kraj}, ${score.id_korisnika}, ${score.tip}, ${score.status})
-          ON CONFLICT DO NOTHING;
-        `;
-      })
-    );
+    const insertedScores = [];
+    for (const score of scores) {
+      const user = await client.sql`
+        SELECT id FROM korisnici WHERE korisnicko_ime = ${score.korisnicko_ime}
+      `;
+
+      if (user.length === 0) {
+        throw new Error(`Korisnik "${score.korisnicko_ime}" ne postoji.`);
+      }
+
+      const result = await client.sql`
+        INSERT INTO rezultati (rezultat, pocetak, kraj, id_korisnika, tip, status)
+        VALUES (${score.rezultat}, ${score.pocetak}, ${score.kraj}, ${user[0].id}, ${score.tip}, ${score.status})
+        ON CONFLICT DO NOTHING;
+      `;
+      insertedScores.push(result);
+    }
 
     console.log(`Ubaceno ${insertedScores.length} rezultata`);
 
@@ -165,7 +174,7 @@ async function seedChallenges(client) {
           VALUES (${challenge.start.x}, ${challenge.start.y}, ${challenge.end.x}, ${challenge.end.y})
           ON CONFLICT DO NOTHING;
         `;
-      })
+      }),
     );
 
     console.log(`Ubaceno ${insertedChallenges.length} izazova`);
