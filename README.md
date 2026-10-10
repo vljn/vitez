@@ -1,7 +1,8 @@
 # ♞ Vitez
 
-Vitez is a full-stack Next.js application for learning and practising chess-knight
-movement through interactive simulations, challenges, and leaderboards.
+Vitez is a full-stack Next.js application that visualizes the Knight's Tour
+problem and helps users learn and practise chess-knight movement through
+interactive simulations, challenges, and leaderboards.
 
 ![Animation GIF](readme_animation.gif)
 
