@@ -11,16 +11,8 @@ export default function BackgroundSwitcher() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('background') === 'true') {
-      setIsOn(true);
-      return;
-    } else if (localStorage.getItem('background') === 'false') {
-      setIsOn(false);
-      return;
-    } else {
-      localStorage.setItem('background', true);
-    }
-  }, [isOn]);
+    setIsOn(localStorage.getItem('background') === 'true');
+  }, []);
 
   useEffect(() => {
     const body = document.querySelector('body');
