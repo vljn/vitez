@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { sql } from '@vercel/postgres';
+import { sql } from './app/lib/db';
 import { authConfig } from './auth.config';
 import { redirect } from 'next/navigation';
 

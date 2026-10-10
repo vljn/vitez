@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import { sql } from './db';
 import { unstable_noStore } from 'next/cache';
 import { InvalidChallengeError } from './errors';
 
@@ -9,6 +9,7 @@ export async function getUser(id) {
     return rows[0];
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -19,6 +20,7 @@ export async function getUsers() {
     return rows;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -60,6 +62,7 @@ export async function getScores(challenge, orderBy = [{ column: 'pocetak', direc
     return rows;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 

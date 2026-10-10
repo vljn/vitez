@@ -1,4 +1,4 @@
-const { sql } = require('@vercel/postgres');
+const { sql } = require('../app/lib/db');
 const bcrypt = require('bcryptjs');
 
 const username = process.argv[2];

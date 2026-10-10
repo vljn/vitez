@@ -2,7 +2,7 @@
 
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
-import { sql } from '@vercel/postgres';
+import { sql } from './db';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
@@ -85,6 +85,7 @@ export async function register(state, formData) {
     INSERT INTO korisnici (korisnicko_ime, mejl, sifra)
     VALUES (${username}, ${email}, ${hashedPassword})`;
   } catch (error) {
+    console.error('Registration failed:', error);
     return {
       message: 'Грешка у бази података',
     };
