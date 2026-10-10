@@ -25,10 +25,22 @@ export default function SpeedSlider({ setSpeed, speed, min, max, disabled }) {
           [&::-webkit-slider-thumb]:border-primary
           [&::-webkit-slider-thumb]:transition-transform
           hover:[&::-webkit-slider-thumb]:scale-125
+          [&::-moz-range-thumb]:appearance-none
+          [&::-moz-range-thumb]:bg-secondary
+          [&::-moz-range-thumb]:w-4
+          [&::-moz-range-thumb]:h-4
+          [&::-moz-range-thumb]:rounded-2xl
+          [&::-moz-range-thumb]:border-4
+          [&::-moz-range-thumb]:border-solid
+          [&::-moz-range-thumb]:border-primary
+          [&::-moz-range-thumb]:transition-transform
+          hover:[&::-moz-range-thumb]:scale-125
           cursor-pointer
           disabled:bg-gray-500
           [&::-webkit-slider-thumb]:disabled:!bg-gray-500
+          [&::-moz-range-thumb]:disabled:!bg-gray-500
           hover:[&::-webkit-slider-thumb]:disabled:scale-100
+          hover:[&::-moz-range-thumb]:disabled:scale-100
           disabled:cursor-default"
       />
     </div>
